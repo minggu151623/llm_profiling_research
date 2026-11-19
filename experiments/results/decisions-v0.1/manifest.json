@@ -1,0 +1,42 @@
+{
+  "dataset_version": "decisions-v0.1",
+  "project_id": "fixture-decisions",
+  "artifact_sha256": "a81195d1f246ff963f08d986b0e090d6aa18f76a88fd9e8bb7440dd13cdbd5d5",
+  "classfile_major": 69,
+  "jdk_vendor": "Eclipse Adoptium",
+  "java_version_output": "openjdk version \"25.0.5.1\" 2026-11-17 LTS\nOpenJDK Runtime Environment Temurin-25.0.5.1+2 (build 25.0.5.1+2-LTS)\nOpenJDK 64-Bit Server VM Temurin-25.0.5.1+2 (build 25.0.5.1+2-LTS, mixed mode, sharing)",
+  "javac": "javac 25.0.5.1",
+  "maven": "Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)",
+  "os": "Darwin",
+  "os_release": "27.0.0",
+  "arch": "arm64",
+  "python": "3.13.5",
+  "jsonschema": "4.25.1",
+  "seed": 42,
+  "vm_flags": [
+    "-Xverify:all"
+  ],
+  "warmup_iterations": 0,
+  "command": "python scripts/pilot.py <new-output-directory>",
+  "source_sha256": {
+    "java/fixtures/Decisions.java": "88d01202abb8895c129576f9b22e93f762d09014d5daa01985c566798b18eefa",
+    "experiments/configs/pilot.json": "1e2d76484214581743a042b2573735d370c3310325b1165dceebd0715686989c",
+    "java/pom.xml": "449f72dff4eb41430b1f2c5baab497ab03f5dc1514cdac075e4255c73a61f85f",
+    "data/validate.py": "5ecf861d7487beeb7d422db7a2e98ca643ee28bdf49271527333add40df98054",
+    "data/requirements.txt": "6377ea0a488d08e21a8b959e710553478853d892cd0bb6960142244df032951c",
+    "scripts/pilot.py": "ec264692303f7c57f004f31636a2b74c0f21735b71b7a1676bc9cd843c48e084",
+    "java/src/main/java/org/branchpilot/Branches.java": "665379cd4af37f1db9bc89f9ea1a6c32168ad7d18d83cd9c683aa7a33a427ed7",
+    "java/src/main/java/org/branchpilot/Counters.java": "f75c34e2bb78200ff942be3ca632cc1ec4ec12708fb85651169b22127376b6b4",
+    "java/src/main/java/org/branchpilot/Pilot.java": "054f6123136d6b256b8709db4fc593a7d926602c567f66259905442339583ba3",
+    "java/src/test/java/org/branchpilot/BranchesTest.java": "78f05879284c7688bb8ea85470246bcb37f04ecd917c59390c2287f1feb0683e",
+    "data/schema/label.schema.json": "ae021f9aeb1ca80abe9a7e4c7427cd8889c9e5d8999374f3f29453ab9cfa2fbf",
+    "data/schema/static.schema.json": "d8db38c64c0be09b0cbb595e62c6c9ab7e50c4de800a3b99f4bf211a20ce73a8"
+  },
+  "output_sha256": {
+    "javap.txt": "42c067f81ec3bf5ac32d5a73400d18dd91b35bbb8bfeaca814933c604ff32e7c",
+    "mostly-negative.jsonl": "17e29fd2435ba314b146bf51441251fe56577c87d693ad96a80ca37ce7e71485",
+    "mostly-positive.jsonl": "f59e896a0bba70e0fcdb8d1c94a5181ceee4803e5cd64ab4e460ba89b966c70b",
+    "run.log": "30a2b291e14c7beb457b9d241d196cf3ad30814c39c7e5581d8cba4e05d1423f",
+    "static.jsonl": "43c9f6bad5a5b49fd9c815976978da10a613de60096610e07b29d99d0c535082"
+  }
+}

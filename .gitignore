@@ -1,0 +1,5 @@
+/java/target/
+/.pilot-venv/
+__pycache__/
+.DS_Store
+/java/target-pilot-run/

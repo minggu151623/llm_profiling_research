@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pilot v0 static record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "branch_id",
+    "artifact_sha256",
+    "class_name",
+    "method_index",
+    "method_name",
+    "method_descriptor",
+    "original_bci",
+    "branch_opcode",
+    "target_bci",
+    "fallthrough_bci"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "v0"
+    },
+    "branch_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}:[0-9]+:[0-9]+$"
+    },
+    "artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "class_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method_index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65534
+    },
+    "method_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method_descriptor": {
+      "type": "string",
+      "minLength": 1
+    },
+    "original_bci": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65534
+    },
+    "branch_opcode": {
+      "enum": [
+        "IFEQ",
+        "IFNE",
+        "IFLT",
+        "IFGE",
+        "IFGT",
+        "IFLE",
+        "IF_ICMPEQ",
+        "IF_ICMPNE",
+        "IF_ICMPLT",
+        "IF_ICMPGE",
+        "IF_ICMPGT",
+        "IF_ICMPLE",
+        "IF_ACMPEQ",
+        "IF_ACMPNE",
+        "IFNULL",
+        "IFNONNULL"
+      ]
+    },
+    "target_bci": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65534
+    },
+    "fallthrough_bci": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65534
+    }
+  }
+}

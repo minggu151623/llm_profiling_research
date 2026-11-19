@@ -1,0 +1,11 @@
+{
+  "dataset_version": "decisions-v0.1",
+  "project_id": "fixture-decisions",
+  "seed": 42,
+  "warmup_iterations": 0,
+  "vm_flags": ["-Xverify:all"],
+  "workloads": {
+    "mostly-positive": [1, 1, 2, 2, 3, 4, 8, 0, 6, -2],
+    "mostly-negative": [-1, -1, -2, -2, -3, -4, -5, -6, 0, 4]
+  }
+}
