@@ -6,10 +6,31 @@ nodes:
     status: proposed
     acceptance_criteria: Both researchers agree on prediction target, workload population and RQ1–RQ4.
     evidence_paths: [research/questions.md]
+  - id: graalsp
+    type: paper
+    owner: AI/ML researcher
+    dependencies: []
+    status: partial_text_verified
+    acceptance_criteria: Publisher excerpts and first-author material support the recorded target and method.
+    evidence_paths: [research/literature/reading_notes/graalsp.md, research/literature/papers.bib]
+  - id: graalnn
+    type: paper
+    owner: AI/ML researcher
+    dependencies: []
+    status: full_text_verified
+    acceptance_criteria: Original article sections support the recorded target, method and evaluation.
+    evidence_paths: [research/literature/reading_notes/graalnn.md, research/literature/papers.bib]
+  - id: method-names
+    type: paper
+    owner: AI/ML researcher
+    dependencies: []
+    status: proceedings_abstract_verified
+    acceptance_criteria: The proceedings abstract supports the method-hotness target and lexical comparison.
+    evidence_paths: [research/literature/reading_notes/method-names.md, research/literature/papers.bib]
   - id: LIT
     type: literature
     owner: AI/ML researcher
-    dependencies: []
+    dependencies: [graalsp, graalnn, method-names]
     status: initial_review
     acceptance_criteria: Three closest sources have traceable claims and verification limits.
     evidence_paths: [research/literature/evidence_matrix.csv, research/literature/novelty_map.md]
@@ -17,8 +38,8 @@ nodes:
     type: measurement
     owner: Java/JVM engineer and AI/ML reviewer
     dependencies: [RQ]
-    status: pilot_measured_schema_under_review
-    acceptance_criteria: Hand-checkable original edges, two workloads and joint contract approval.
+    status: v0_frozen_for_pilot
+    acceptance_criteria: Hand-checkable original edges and two validated workloads under the frozen pilot contract.
     evidence_paths: [data/schema/README.md, experiments/results/decisions-v0.1/manifest.json]
   - id: BASE
     type: modeling

@@ -1,6 +1,6 @@
-# Proposed contract v0
+# Frozen pilot contract v0
 
-Each line of `static.jsonl` describes one conditional jump in one original class. Each workload has its own label file with precisely one row per static site, including zero-count sites. Each complete run has a manifest carrying the project ID, dataset version, compiler and VM, SHA-256 of the original class, inputs and output file hashes. The proposed v0 artifact unit is one class file. JAR provenance and classes loaded under multiple loaders require a joint design decision. [Static schema](static.schema.json) · [Label schema](label.schema.json)
+Each line of `static.jsonl` describes one conditional jump in one original class. Each workload has its own label file with precisely one row per static site, including zero-count sites. Each complete run has a manifest carrying the project ID, dataset version, compiler and VM, SHA-256 of the original class, inputs and output file hashes. The v0 artifact unit is one class file. Changes to ID or label semantics require a new schema version. JAR provenance and classes loaded under multiple loaders require a joint design decision. [Static schema](static.schema.json) · [Label schema](label.schema.json)
 
 ## Identity and edge direction
 

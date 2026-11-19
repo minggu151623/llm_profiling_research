@@ -2,6 +2,10 @@
 
 Dự án của nhóm hai người nghiên cứu xác suất một lệnh nhảy có điều kiện trong bytecode Java sẽ đi đến đích nhảy. Mô hình tương lai chỉ đọc dữ liệu tĩnh. Nhóm chạy Java trong giai đoạn thu nhãn để biết hai cạnh thực sự được thực thi bao nhiêu lần.
 
+## DAG và thư viện bài báo
+
+**[Mở sơ đồ DAG và danh mục ba bài báo](research/literature/README.md)**. Mỗi bài có ghi chú đọc và đường dẫn tới nguồn gốc. [DAG dạng YAML](research/dependency_graph.yaml) · [BibTeX](research/literature/papers.bib)
+
 ## Pilot đầu tiên
 
 Một fixture tự viết biên dịch bằng Temurin 25 cho 6 nhánh bytecode, bao gồm vòng lặp và biểu thức short-circuit. Hai workload cho 12 cặp nhánh–workload, trong đó 10 cặp được quan sát. Hai cặp còn lại cùng thuộc phương thức không được gọi. Đây là kiểm tra pipeline trên một chương trình, chưa có kết quả dự đoán của mô hình. [Kết quả và provenance](experiments/results/decisions-v0.1/) · [Thiết kế và tiêu chí nghiệm thu](research/decisions.md)
@@ -34,6 +38,6 @@ Tham số cuối của runner là một thư mục kết quả **mới**. Có th
 | --- | --- | --- |
 | Java/JVM engineer | [Quy ước BCI, ID và nhãn](data/schema/README.md), [tests Java](java/src/test/java/org/branchpilot/BranchesTest.java) | Xác nhận ánh xạ cạnh, phạm vi fixture và điều kiện mở rộng sang JAR |
 | AI/ML researcher | [RQ và protocol đo](research/questions.md), [prior work](research/literature/novelty_map.md), [loader](data/validate.py) | Xác nhận baseline, cách tách dữ liệu và giới hạn claim |
-| Cả hai | [Quyết định còn mở](research/decisions.md), [dependency graph](research/dependency_graph.yaml) | Duyệt schema v0, workload và RQ trước khi thu bộ dữ liệu lớn |
+| Cả hai | [Quyết định còn mở](research/decisions.md), [dependency graph](research/dependency_graph.yaml) | Dùng schema v0 cho pilot. Cùng duyệt bộ project, workload và manifest chia tập trước khi đo trên quy mô lớn |
 
 [Research brief gốc](CODEX_RESEARCH_BRIEF_SLM_JVM_BRANCH_PROFILING.md)
