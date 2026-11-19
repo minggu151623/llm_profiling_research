@@ -1,6 +1,6 @@
 # DAG bài báo và thí nghiệm
 
-Mũi tên chỉ từ nguồn đến quyết định sử dụng nguồn đó. Ví dụ, Raman–Li đã đưa tên hàm được gọi vào mô hình xác suất nhánh LLVM. Vì vậy, RQ2 cần so sánh SLM với mô hình từ vựng và đo tác động khi che tên trên cùng nhánh. Trạng thái từng nút và tiêu chí nghiệm thu nằm trong [DAG dạng YAML](../dependency_graph.yaml).
+Mũi tên chỉ từ nguồn đến quyết định sử dụng nguồn đó. Ví dụ, Raman–Li đã đưa tên hàm được gọi vào mô hình xác suất nhánh LLVM. Vì vậy, RQ2 cần so sánh SLM với mô hình từ vựng và đo tác động khi che tên trên cùng nhánh. Nút xanh đã có kết quả đo, nút vàng đang chờ người thực hiện. Trạng thái, tiêu chí nghiệm thu, con số chính và đường dẫn bằng chứng của từng nút nằm trong [DAG dạng YAML](../dependency_graph.yaml).
 
 ```mermaid
 flowchart LR
@@ -16,14 +16,14 @@ flowchart LR
     kim_input["2D-Profiling"]
     phaedrus["Phaedrus"]
     SIG["Profiling Beyond IR"]
-    DATA["Cạnh bytecode gốc"]
-    JAVA["Kiểm thử Java độc lập"]
-    BASE["RQ1 · Baseline cấu trúc"]
-    SLM["RQ1 · SLM zero-shot"]
-    E1["RQ2 · Che tên định danh"]
-    E2["RQ3 · Project chưa thấy"]
-    E3["RQ4 · Workload mới"]
-    CLAIMS["Kết quả và giới hạn"]
+    DATA["Cạnh bytecode gốc<br/>193 nhánh, 138 có nhãn"]
+    JAVA["Kiểm thử Java độc lập<br/>chờ cộng sự"]
+    BASE["RQ1 · Baseline cấu trúc<br/>MAE 0.311–0.326"]
+    SLM["RQ1 · SLM zero-shot và embedding<br/>MAE 0.424 và 0.327"]
+    E1["RQ2 · Che tên định danh<br/>thay đổi ≤ 0.003"]
+    E2["RQ3 · Project chưa thấy<br/>không hơn lexical ridge"]
+    E3["RQ4 · Workload mới<br/>sàn sai số 0.044"]
+    CLAIMS["Kết quả và giới hạn<br/>bản thảo chờ duyệt"]
     graalnn --> DATA
     DATA --> JAVA
     ball_larus --> BASE
@@ -46,6 +46,10 @@ flowchart LR
     E1 --> CLAIMS
     E2 --> CLAIMS
     E3 --> CLAIMS
+    classDef measured fill:#dcefe3,stroke:#2f7d4f,color:#1b3a28
+    classDef waiting fill:#fbecd0,stroke:#b07a12,color:#4a3305
+    class DATA,BASE,SLM,E1,E2,E3 measured
+    class JAVA,CLAIMS waiting
 ```
 
 | Công trình | Quyết định liên quan | Nguồn |
