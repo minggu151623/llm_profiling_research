@@ -1,0 +1,126 @@
+{
+  "version": "libbranches-v1",
+  "seed": 42,
+  "max_sites_per_project": 96,
+  "bootstrap_draws": 10000,
+  "near_duplicate_jaccard": 0.9,
+  "ridge_alpha": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "xgb_depth": [
+    2,
+    4
+  ],
+  "xgb_trees": 100,
+  "xgb_rate": 0.05,
+  "projects": [
+    "commons-codec",
+    "guava",
+    "javapoet",
+    "joda-time",
+    "jsoup",
+    "jts",
+    "maven-artifact",
+    "org-json"
+  ],
+  "folds": [
+    {
+      "test": "commons-codec",
+      "validation": "guava",
+      "train": [
+        "javapoet",
+        "joda-time",
+        "jsoup",
+        "jts",
+        "maven-artifact",
+        "org-json"
+      ]
+    },
+    {
+      "test": "guava",
+      "validation": "javapoet",
+      "train": [
+        "commons-codec",
+        "joda-time",
+        "jsoup",
+        "jts",
+        "maven-artifact",
+        "org-json"
+      ]
+    },
+    {
+      "test": "javapoet",
+      "validation": "joda-time",
+      "train": [
+        "commons-codec",
+        "guava",
+        "jsoup",
+        "jts",
+        "maven-artifact",
+        "org-json"
+      ]
+    },
+    {
+      "test": "joda-time",
+      "validation": "jsoup",
+      "train": [
+        "commons-codec",
+        "guava",
+        "javapoet",
+        "jts",
+        "maven-artifact",
+        "org-json"
+      ]
+    },
+    {
+      "test": "jsoup",
+      "validation": "jts",
+      "train": [
+        "commons-codec",
+        "guava",
+        "javapoet",
+        "joda-time",
+        "maven-artifact",
+        "org-json"
+      ]
+    },
+    {
+      "test": "jts",
+      "validation": "maven-artifact",
+      "train": [
+        "commons-codec",
+        "guava",
+        "javapoet",
+        "joda-time",
+        "jsoup",
+        "org-json"
+      ]
+    },
+    {
+      "test": "maven-artifact",
+      "validation": "org-json",
+      "train": [
+        "commons-codec",
+        "guava",
+        "javapoet",
+        "joda-time",
+        "jsoup",
+        "jts"
+      ]
+    },
+    {
+      "test": "org-json",
+      "validation": "commons-codec",
+      "train": [
+        "guava",
+        "javapoet",
+        "joda-time",
+        "jsoup",
+        "jts",
+        "maven-artifact"
+      ]
+    }
+  ]
+}
