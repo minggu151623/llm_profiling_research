@@ -1,0 +1,14 @@
+# Third-party notices for bytecode context
+
+Each `context.jsonl` contains short disassembly windows derived from an upstream class file. The study selected a conditional instruction and up to five neighboring instructions on each side, marked the focal instruction, and produced an additional representation with masked symbolic operands. This directory identifies the releases that supplied those instructions and preserves their licensing and attribution texts. The linked configuration records each JAR URL and SHA-256 digest. [Selected classes, versions and artifact digests](../../configs/corpus.json) · [Disassembly implementation](../../../java/src/main/java/org/branchpilot/Corpus.java)
+
+| Project and class | Upstream attribution | License and notice source |
+| --- | --- | --- |
+| Apache Commons Codec 1.17.1 · `Soundex` | Copyright 2002–2024 The Apache Software Foundation | JAR `META-INF`. [License](commons-codec/LICENSE.txt) · [Notice](commons-codec/NOTICE.txt) |
+| Guava 33.3.1-jre · `Ascii` | Copyright (C) 2010 The Guava Authors | JAR `META-INF` and class header in the matching sources JAR. [License](guava/LICENSE) · [Upstream source distribution](https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre-sources.jar) |
+| JavaPoet 1.13.0 · `Util` | Copyright (C) 2015 Square, Inc. | [License](javapoet/LICENSE.txt) · [Upstream release license](https://github.com/square/javapoet/blob/javapoet-1.13.0/LICENSE.txt) · [Upstream source distribution](https://repo.maven.apache.org/maven2/com/squareup/javapoet/1.13.0/javapoet-1.13.0-sources.jar) |
+| Joda-Time 2.12.7 · `FieldUtils` | Copyright 2001–2005 Stephen Colebourne. The release notice credits Joda.org. | JAR `META-INF` and class header in the matching sources JAR. [License](joda-time/LICENSE.txt) · [Notice](joda-time/NOTICE.txt) · [Upstream source distribution](https://repo.maven.apache.org/maven2/joda-time/joda-time/2.12.7/joda-time-2.12.7-sources.jar) |
+| jsoup 1.18.3 · `StringUtil` | Copyright (c) 2009–2024 Jonathan Hedley | JAR `META-INF`. [MIT license and attribution](jsoup/LICENSE) |
+| JTS 1.20.0 · `Envelope` | Copyright (c) 2016 Vivid Solutions. JTS names EPL 2.0 or the BSD-style Eclipse Distribution License 1.0 in its licensing overview. | [Upstream class](https://github.com/locationtech/jts/blob/1.20.0/modules/core/src/main/java/org/locationtech/jts/geom/Envelope.java) · [Overview](jts/LICENSES.md) · [EPL](jts/LICENSE_EPLv2.txt) · [EDL](jts/LICENSE_EDLv1.txt) · [OSGeo notice referenced by the overview](jts/OSGEO_LICENSE.txt) |
+| Maven Artifact 3.9.9 · `ComparableVersion` | Copyright 2001–2024 The Apache Software Foundation | JAR `META-INF`. [License](maven-artifact/LICENSE) · [Notice](maven-artifact/NOTICE) |
+| JSON-java 20240303 · `JSONTokener` | The upstream release declares “Public Domain.” | [Declaration](org-json/LICENSE) · [Tagged upstream file](https://github.com/stleary/JSON-java/blob/20240303/LICENSE) |
