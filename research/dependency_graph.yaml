@@ -121,11 +121,15 @@ nodes:
   owner: Codex (research)
   dependencies:
   - graalnn
-  status: protocol_registered
+  status: measured_reproduced_on_linux
   acceptance_criteria: Recover original jump and fallthrough offsets and preserve counts by workload.
+  result: 193 original conditional sites in eight libraries; 138 observed under each workload. All 32 JSONL files
+    match between macOS and the Ubuntu 24.04 runner, and output digests agree for all 16 project-workload pairs.
   evidence_paths:
   - data/schema/README.md
   - experiments/study/protocol.md
+  - experiments/study/corpus/manifest.json
+  - experiments/study/linux/corpus-manifest.json
 - id: JAVA
   type: independent_test
   owner: Java test collaborator
@@ -144,20 +148,29 @@ nodes:
   - vespa
   - graalsp
   - DATA
-  status: protocol_registered
+  status: measured
   acceptance_criteria: Evaluate the structural baselines on the same sites as the SLM.
+  result: Held-out normal-workload macro MAE 0.429 for uniform 0.5, 0.471 for the direction rule (all sites jump
+    forward, so it predicts 0), 0.326 for structural ridge, 0.311 for structural XGBoost and 0.325 for lexical ridge.
   evidence_paths:
   - experiments/study/protocol.md
+  - experiments/study/evaluation/metrics.csv
 - id: SLM
   type: modeling
   owner: Codex (research)
   dependencies:
   - phaedrus
   - DATA
-  status: protocol_registered
+  status: measured
   acceptance_criteria: Run the frozen model on static-only prompts with a fixed probability readout.
+  result: Zero-shot ratings span 0.339-0.489 (Spearman -0.04 with labels), macro MAE 0.424, +0.099 (0.050 to 0.152)
+    versus lexical ridge. Embedding ridge MAE 0.327, +0.002 (-0.022 to 0.024) versus lexical ridge. Final-prompt
+    states have mean pairwise cosine 0.996; a training-mean-centered refit (exploratory) did not improve accuracy.
   evidence_paths:
   - experiments/study/protocol.md
+  - experiments/study/slm/manifest.json
+  - experiments/study/evaluation/paired_deltas.csv
+  - experiments/study/supplement/centered.csv
 - id: E1
   type: experiment
   owner: Codex (research)
@@ -167,10 +180,13 @@ nodes:
   - codet5
   - raman-li
   - SIG
-  status: protocol_registered
+  status: measured
   acceptance_criteria: Score the paired lexical and identifier-masked interventions.
+  result: Masking changed macro MAE by +0.001 (-0.002 to 0.004) for the embedding ridge and -0.002 (-0.011 to 0.007)
+    for the zero-shot rating. The paired masking contrasts are exploratory.
   evidence_paths:
   - experiments/study/protocol.md
+  - experiments/study/supplement/sensitivity.csv
 - id: E2
   type: experiment
   owner: Codex (research)
@@ -178,21 +194,29 @@ nodes:
   - BASE
   - SLM
   - duplicates
-  status: protocol_registered
+  status: measured
   acceptance_criteria: Report paired held-out project scores after duplicate exclusions.
+  result: Six training rows removed across four folds for local opcode similarity. Seen-project shift MAE fell to
+    0.133-0.137 for structural and embedding ridges, but copying each site's normal label reaches 0.088.
   evidence_paths:
   - experiments/study/protocol.md
   - experiments/study/config.json
+  - experiments/study/evaluation/folds.json
+  - experiments/study/supplement/persistence.csv
 - id: E3
   type: experiment
   owner: Codex (research)
   dependencies:
   - DATA
   - kim-input
-  status: protocol_registered
+  status: measured
   acceptance_criteria: Compare matched observed sites across input families and record coverage.
+  result: 82 of 138 matched sites changed taken fraction, 42 by more than 0.10. Workload-blind error floor 0.044
+    with projects weighted equally.
   evidence_paths:
   - experiments/study/protocol.md
+  - experiments/study/evaluation/workload_shift.csv
+  - experiments/study/evaluation/coverage.csv
 - id: CLAIMS
   type: synthesis
   owner: Codex (research)
@@ -200,8 +224,11 @@ nodes:
   - E1
   - E2
   - E3
-  status: protocol_registered
+  status: drafted_awaiting_human_review
   acceptance_criteria: Trace empirical claims to paired measured data, including uncertainty and limitations.
+  result: Manuscript reports a negative result for the frozen 0.49B SLM, as the go/no-go rule in the research brief
+    prescribes. Authorship, novelty and arXiv submission await the project owner's review.
   evidence_paths:
   - research/literature/novelty_map.md
   - experiments/study/protocol.md
+  - paper/manuscript.md
