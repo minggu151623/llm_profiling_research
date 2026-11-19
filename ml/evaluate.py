@@ -166,7 +166,6 @@ if __name__ == "__main__":
         evaluate(args.corpus, args.slm, out, json.loads(args.config.read_text()))
         from summarize import summarize
         summarize(out, json.loads(args.config.read_text()))
-        from importlib.util import find_spec
         packages = ["numpy","scipy","scikit-learn"]
         packages.append("xgboost-cpu" if platform.system()=="Linux" else "xgboost")
         (out/"run.json").write_text(json.dumps({"system":platform.platform(),"python":platform.python_version(),
