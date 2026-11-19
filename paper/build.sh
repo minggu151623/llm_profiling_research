@@ -1,0 +1,14 @@
+#!/bin/sh
+# Build paper/build/main.pdf with Tectonic and pack the arXiv upload (main.tex, main.bbl, figure).
+set -eu
+here=$(cd "$(dirname "$0")" && pwd)
+out="$here/build"
+rm -rf "$out"
+mkdir -p "$out"
+cp "$here/main.tex" "$here/project-results.png" "$out/"
+cp "$here/../research/literature/papers.bib" "$out/references.bib"
+cd "$out"
+tectonic -X compile main.tex --keep-intermediates --keep-logs
+tar -czf arxiv.tar.gz main.tex main.bbl project-results.png
+echo "PDF: $out/main.pdf"
+echo "arXiv upload: $out/arxiv.tar.gz"
