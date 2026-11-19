@@ -86,10 +86,17 @@ def read_model(path, sites):
     selected = {s.key: s.project for s in sites if s.selected}
     with np.load(path / "embeddings.npz", allow_pickle=False) as data:
         keys = data["branch_id"].astype(str).tolist()
+        projects = data["project_id"].astype(str).tolist()
         if len(keys) != len(set(keys)) or set(keys) != selected.keys() or predictions.keys() != selected.keys():
             raise ValueError("Expected every preselected site to have its predictions and representations")
-        vectors = {name: dict(zip(keys, data[name].astype(np.float32), strict=True))
-                   for name in ("full", "masked")}
+        if projects != [selected[key] for key in keys]:
+            raise ValueError("Embedding project IDs do not match the site inventory")
+        vectors = {}
+        for name in ("full", "masked"):
+            matrix = data[name]
+            if matrix.shape != (len(keys), 896):
+                raise ValueError(f"Invalid {name} embedding shape {matrix.shape}; expected a 896-vector per site")
+            vectors[name] = dict(zip(keys, matrix.astype(np.float32), strict=True))
     for key, row in predictions.items():
         if row["project_id"] != selected[key] or not all(
                 0 <= row[f"q_{name}"] <= 1 and np.isfinite(vectors[name][key]).all() for name in vectors):

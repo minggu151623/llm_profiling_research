@@ -106,7 +106,22 @@ def predict_rows(test, scores, setting, workloads):
                            taken=label["taken_count"], fallthrough=label["fallthrough_count"])
 
 
+def validate_folds(config):
+    projects = config["projects"]
+    tests = [f["test"] for f in config["folds"]]
+    if len(set(projects)) != len(projects) or sorted(tests) != sorted(projects):
+        raise ValueError("Each project family must be tested exactly once")
+    for fold in config["folds"]:
+        partitions = [fold["test"], fold["validation"], *fold["train"]]
+        if not fold["train"] or sorted(partitions) != sorted(projects):
+            raise ValueError("Train, validation and test families must partition the roster")
+        expected = projects[(projects.index(fold["test"]) + 1) % len(projects)]
+        if fold["validation"] != expected:
+            raise ValueError("Expected the next family in roster order for validation")
+
+
 def evaluate(corpus, slm_path, out, config):
+    validate_folds(config)
     sites = load_corpus(corpus, config)
     slm, vectors = read_model(slm_path, sites)
     results, audits, exclusions, params = [], [], [], defaultdict(list)
