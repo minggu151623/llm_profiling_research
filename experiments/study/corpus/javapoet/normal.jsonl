@@ -1,0 +1,6 @@
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:10:104","workload_id":"normal","taken_count":486,"fallthrough_count":2,"p_taken":0.9959016393442623}
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:28","workload_id":"normal","taken_count":100,"fallthrough_count":518,"p_taken":0.16181229773462782}
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:42","workload_id":"normal","taken_count":517,"fallthrough_count":1,"p_taken":0.9980694980694981}
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:59","workload_id":"normal","taken_count":513,"fallthrough_count":4,"p_taken":0.9922630560928434}
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:86","workload_id":"normal","taken_count":505,"fallthrough_count":8,"p_taken":0.9844054580896686}
+{"schema_version":"v0","branch_id":"903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:96","workload_id":"normal","taken_count":0,"fallthrough_count":8,"p_taken":0.0}

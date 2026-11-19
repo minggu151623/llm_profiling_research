@@ -1,0 +1,12 @@
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:9:6","workload_id":"shift","taken_count":0,"fallthrough_count":316,"p_taken":0.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:9:15","workload_id":"shift","taken_count":316,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:1","workload_id":"shift","taken_count":100,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:15","workload_id":"shift","taken_count":73,"fallthrough_count":27,"p_taken":0.73}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:78","workload_id":"shift","taken_count":54,"fallthrough_count":360,"p_taken":0.13043478260869565}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:84","workload_id":"shift","taken_count":19,"fallthrough_count":341,"p_taken":0.05277777777777778}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:99","workload_id":"shift","taken_count":0,"fallthrough_count":341,"p_taken":0.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:106","workload_id":"shift","taken_count":53,"fallthrough_count":288,"p_taken":0.15542521994134897}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:113","workload_id":"shift","taken_count":243,"fallthrough_count":45,"p_taken":0.84375}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:131","workload_id":"shift","taken_count":243,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:141","workload_id":"shift","taken_count":46,"fallthrough_count":197,"p_taken":0.18930041152263374}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:148","workload_id":"shift","taken_count":105,"fallthrough_count":92,"p_taken":0.5329949238578681}

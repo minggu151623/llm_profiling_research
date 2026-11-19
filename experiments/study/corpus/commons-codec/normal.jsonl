@@ -1,0 +1,12 @@
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:9:6","workload_id":"normal","taken_count":0,"fallthrough_count":526,"p_taken":0.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:9:15","workload_id":"normal","taken_count":526,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:1","workload_id":"normal","taken_count":100,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:15","workload_id":"normal","taken_count":94,"fallthrough_count":6,"p_taken":0.94}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:78","workload_id":"normal","taken_count":90,"fallthrough_count":468,"p_taken":0.16129032258064516}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:84","workload_id":"normal","taken_count":4,"fallthrough_count":464,"p_taken":0.008547008547008548}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:99","workload_id":"normal","taken_count":0,"fallthrough_count":464,"p_taken":0.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:106","workload_id":"normal","taken_count":26,"fallthrough_count":438,"p_taken":0.05603448275862069}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:113","workload_id":"normal","taken_count":432,"fallthrough_count":6,"p_taken":0.9863013698630136}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:131","workload_id":"normal","taken_count":432,"fallthrough_count":0,"p_taken":1.0}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:141","workload_id":"normal","taken_count":163,"fallthrough_count":269,"p_taken":0.3773148148148148}
+{"schema_version":"v0","branch_id":"fcaabafdad94023fa045c046a66d20f8c678e7d7fb8133e4aeb967fd0092d357:11:148","workload_id":"normal","taken_count":61,"fallthrough_count":208,"p_taken":0.22676579925650558}
