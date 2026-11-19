@@ -35,3 +35,14 @@ python3.12 -m venv /tmp/branch-eval-env
 ```
 
 The output directory must be new for each run. Runtime metadata is machine-specific. Use per-site ID, workload counts, per-project errors, and paired deltas to compare reruns.
+
+## 4. Exploratory supplements
+
+These analyses were specified after the primary results and are labelled exploratory in the manuscript. The first reads only the saved predictions. The second refits the registered folds after subtracting each fold's training-mean SLM state. [Supplementary tables](supplement/)
+
+```sh
+/tmp/branch-eval-env/bin/python ml/sensitivity.py experiments/study/evaluation/predictions.csv /tmp/jvm-reference/supplement
+/tmp/branch-eval-env/bin/python ml/centered.py experiments/study/corpus experiments/study/slm /tmp/jvm-reference/supplement
+```
+
+On macOS, the xgboost wheel loads `libomp.dylib` at import. If Homebrew's libomp is absent, point `DYLD_FALLBACK_LIBRARY_PATH` at a directory containing only that library.

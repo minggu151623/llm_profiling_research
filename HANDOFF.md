@@ -31,3 +31,11 @@ Checkpoint ghi ngày 19/11/2026 sau thu corpus macOS. Chưa có kết quả Qwen
 Corpus tám project đã được chạy lại trên runner Ubuntu 24.04, khớp cả 32 file JSONL với macOS. Lần chạy Linux gốc là [Actions 44496268635](https://github.com/minggu151623/llm_profiling_research/actions/runs/44496268635). Xem trạng thái và đọc log bằng `gh run view 44496268635`, tải artifact bằng `gh run download 44496268635 -n linux-reference -D /tmp/linux-reference` khi run kết thúc. [PR nghiên cứu](https://github.com/minggu151623/llm_profiling_research/pull/2)
 
 Đã có tổng hợp metric/CI tại `ml/summarize.py`, 11 công trình với liên kết vào DAG, và hướng dẫn kiểm tra độc lập tại [java/TESTING.md](java/TESTING.md). Khi có corpus/SLM/evaluation tương ứng, kiểm tra toàn bộ join, checksum, macro MAE và tính bất biến giữa hai workload bằng `python3 scripts/verify_study.py CORPUS SLM EVALUATION`. Cache JAR mặc định của runner ở `~/.cache/branch-study/jars`.
+
+## Cập nhật 19/11/2026: bản thảo đầy đủ
+
+Bản thảo [paper/manuscript.md](paper/manuscript.md) đã có abstract, kết quả RQ1–RQ4, Table 2, Figure 1, chi phí, discussion và conclusion. Mọi số liệu lấy từ `experiments/study/evaluation/` (lần chạy Linux, SciPy 1.15.3). Chạy lại trên macOS với SciPy 1.17.1 cho dự đoán lệch tối đa 9 × 10⁻⁶ mỗi site và macro MAE lệch dưới 10⁻⁶. `verify_study.py` và `test_study.py` đều đạt.
+
+Kết quả chính: rating zero-shot gần như hằng số (0.34–0.49, Spearman −0.04), MAE 0.424 so với 0.429 của 0.5 và 0.325 của lexical ridge. Embedding ridge bằng lexical ridge (+0.002, CI −0.022 đến 0.024). Hidden state của Qwen có cosine trung bình 0.996 nên ridge gần như chỉ dùng phần structural. Lần chạy exploratory trừ trung bình train ([ml/centered.py](ml/centered.py)) không cải thiện (+0.017 so với lexical). Các phân tích masking, support, persistence và centering được ghi rõ là exploratory.
+
+Còn mở: kiểm thử Java độc lập của cộng sự vẫn chờ kết quả thực tế. Bản thảo chưa có danh sách tác giả, chưa chuyển sang LaTeX và chưa có quyết định nộp arXiv. CI `score.yml` đã thêm hai bước supplement nhưng chưa chạy trên GitHub vì nhánh chưa được push.

@@ -1,0 +1,10 @@
+test,embedding_full,embedding_masked
+commons-codec,1.0,1.0
+guava,1.0,1.0
+javapoet,0.1,0.1
+joda-time,0.1,0.1
+jsoup,10.0,0.1
+jts,1.0,1.0
+maven-artifact,1.0,1.0
+org-json,1.0,1.0
+seen,1.0,1.0

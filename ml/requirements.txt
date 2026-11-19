@@ -49,12 +49,16 @@ rpds-py==2026.9.1
     #   referencing
 scikit-learn==1.6.1
     # via -r ml/requirements.in
-scipy==1.15.3
+scipy==1.15.3 ; sys_platform != 'darwin'
+    # via
+    #   -r ml/requirements.in
+    #   scikit-learn
+    #   xgboost-cpu
+scipy==1.17.1 ; sys_platform == 'darwin'
     # via
     #   -r ml/requirements.in
     #   scikit-learn
     #   xgboost
-    #   xgboost-cpu
 threadpoolctl==3.8.0
     # via scikit-learn
 typing-extensions==4.16.0 ; python_full_version < '3.13'

@@ -1,0 +1,161 @@
+{
+  "unseen": [
+    {
+      "test": "commons-codec",
+      "validation": "guava",
+      "train_sites": 108,
+      "validation_sites": 18,
+      "test_static": 12,
+      "choices": {
+        "structural_ridge": 0.1,
+        "structural_xgb": 4,
+        "lexical_ridge": 0.1,
+        "embedding_full": 0.1,
+        "embedding_masked": 0.1
+      }
+    },
+    {
+      "test": "guava",
+      "validation": "javapoet",
+      "train_sites": 112,
+      "validation_sites": 6,
+      "test_static": 24,
+      "choices": {
+        "structural_ridge": 0.1,
+        "structural_xgb": 4,
+        "lexical_ridge": 0.1,
+        "embedding_full": 0.1,
+        "embedding_masked": 0.1
+      }
+    },
+    {
+      "test": "javapoet",
+      "validation": "joda-time",
+      "train_sites": 121,
+      "validation_sites": 9,
+      "test_static": 6,
+      "choices": {
+        "structural_ridge": 0.1,
+        "structural_xgb": 4,
+        "lexical_ridge": 0.1,
+        "embedding_full": 0.1,
+        "embedding_masked": 0.1
+      }
+    },
+    {
+      "test": "joda-time",
+      "validation": "jsoup",
+      "train_sites": 107,
+      "validation_sites": 22,
+      "test_static": 22,
+      "choices": {
+        "structural_ridge": 0.1,
+        "structural_xgb": 4,
+        "lexical_ridge": 0.1,
+        "embedding_full": 0.1,
+        "embedding_masked": 0.1
+      }
+    },
+    {
+      "test": "jsoup",
+      "validation": "jts",
+      "train_sites": 88,
+      "validation_sites": 28,
+      "test_static": 23,
+      "choices": {
+        "structural_ridge": 1.0,
+        "structural_xgb": 4,
+        "lexical_ridge": 1.0,
+        "embedding_full": 1.0,
+        "embedding_masked": 1.0
+      }
+    },
+    {
+      "test": "jts",
+      "validation": "maven-artifact",
+      "train_sites": 87,
+      "validation_sites": 22,
+      "test_static": 60,
+      "choices": {
+        "structural_ridge": 1.0,
+        "structural_xgb": 4,
+        "lexical_ridge": 1.0,
+        "embedding_full": 1.0,
+        "embedding_masked": 1.0
+      }
+    },
+    {
+      "test": "maven-artifact",
+      "validation": "org-json",
+      "train_sites": 94,
+      "validation_sites": 21,
+      "test_static": 23,
+      "choices": {
+        "structural_ridge": 1.0,
+        "structural_xgb": 4,
+        "lexical_ridge": 1.0,
+        "embedding_full": 1.0,
+        "embedding_masked": 1.0
+      }
+    },
+    {
+      "test": "org-json",
+      "validation": "commons-codec",
+      "train_sites": 105,
+      "validation_sites": 12,
+      "test_static": 23,
+      "choices": {
+        "structural_ridge": 0.1,
+        "structural_xgb": 2,
+        "lexical_ridge": 1.0,
+        "embedding_full": 0.1,
+        "embedding_masked": 0.1
+      }
+    }
+  ],
+  "seen_choices": {
+    "structural_ridge": 0.1,
+    "structural_xgb": 4,
+    "lexical_ridge": 1.0,
+    "embedding_full": 0.1,
+    "embedding_masked": 0.1
+  },
+  "duplicate_exclusions": [
+    {
+      "test": "guava",
+      "partition": "train",
+      "branch_id": "ee6ac5309f07e98465e8aff6545cf0b928430f9d639ab78c18358eec0b565ac4:1:60",
+      "reason": "local_opcode_trigrams"
+    },
+    {
+      "test": "guava",
+      "partition": "train",
+      "branch_id": "ee6ac5309f07e98465e8aff6545cf0b928430f9d639ab78c18358eec0b565ac4:3:21",
+      "reason": "local_opcode_trigrams"
+    },
+    {
+      "test": "javapoet",
+      "partition": "train",
+      "branch_id": "ee6ac5309f07e98465e8aff6545cf0b928430f9d639ab78c18358eec0b565ac4:1:60",
+      "reason": "local_opcode_trigrams"
+    },
+    {
+      "test": "javapoet",
+      "partition": "train",
+      "branch_id": "ee6ac5309f07e98465e8aff6545cf0b928430f9d639ab78c18358eec0b565ac4:3:21",
+      "reason": "local_opcode_trigrams"
+    },
+    {
+      "test": "jts",
+      "partition": "train",
+      "branch_id": "903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:28",
+      "reason": "local_opcode_trigrams"
+    },
+    {
+      "test": "maven-artifact",
+      "partition": "train",
+      "branch_id": "903af168425abe21e85cb91dd28dc8c26b9f6f9dde5c741305629d557ff93b10:11:28",
+      "reason": "local_opcode_trigrams"
+    }
+  ]
+}
