@@ -1,0 +1,169 @@
+{
+  "dataset_version": "oss-branches-v1",
+  "seed": 1516,
+  "examples": 100,
+  "family_period": 20,
+  "normal_family_a": 17,
+  "shift_family_a": 3,
+  "projects": [
+    {
+      "project": "commons-codec",
+      "group": "commons-codec",
+      "artifact": "commons-codec",
+      "version": "1.17.1",
+      "target_class": "org.apache.commons.codec.language.Soundex",
+      "upstream": "https://github.com/apache/commons-codec",
+      "license": "Apache-2.0",
+      "url": "https://repo.maven.apache.org/maven2/commons-codec/commons-codec/1.17.1/commons-codec-1.17.1.jar",
+      "sha256": "f9f6cb103f2ddc3c99a9d80ada2ae7bf0685111fd6bffccb72033d1da4e6ff23",
+      "method_names": [
+        "soundex",
+        "map"
+      ],
+      "family_a": "ordinary English surnames",
+      "family_b": "short, repeated, H/W-heavy or punctuation-only names"
+    },
+    {
+      "project": "guava",
+      "group": "com.google.guava",
+      "artifact": "guava",
+      "version": "33.3.1-jre",
+      "target_class": "com.google.common.base.Ascii",
+      "upstream": "https://github.com/google/guava",
+      "license": "Apache-2.0",
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre.jar",
+      "sha256": "4bf0e2c5af8e4525c96e8fde17a4f7307f97f8478f11c4c8e35a0e3298ae4e90",
+      "method_names": [
+        "toLowerCase",
+        "toUpperCase",
+        "equalsIgnoreCase",
+        "isLowerCase",
+        "isUpperCase",
+        "getAlphaIndex"
+      ],
+      "family_a": "lowercase ASCII strings and equal string pairs",
+      "family_b": "mixed case, unequal-length, non-letter or non-ASCII strings"
+    },
+    {
+      "project": "joda-time",
+      "group": "joda-time",
+      "artifact": "joda-time",
+      "version": "2.12.7",
+      "target_class": "org.joda.time.field.FieldUtils",
+      "upstream": "https://github.com/JodaOrg/joda-time",
+      "license": "Apache-2.0",
+      "url": "https://repo.maven.apache.org/maven2/joda-time/joda-time/2.12.7/joda-time-2.12.7.jar",
+      "sha256": "385282b005818cfaccdbe8bd2429811e7e641782f2b88932a6b8ff51d668f616",
+      "method_names": [
+        "getWrappedValue",
+        "safeAdd",
+        "safeMultiply",
+        "safeToInt"
+      ],
+      "family_a": "small positive operands and values within bounds",
+      "family_b": "negative/outside-cycle values and products near or beyond integer bounds"
+    },
+    {
+      "project": "maven-artifact",
+      "group": "org.apache.maven",
+      "artifact": "maven-artifact",
+      "version": "3.9.9",
+      "target_class": "org.apache.maven.artifact.versioning.ComparableVersion",
+      "upstream": "https://github.com/apache/maven",
+      "license": "Apache-2.0",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/3.9.9/maven-artifact-3.9.9.jar",
+      "sha256": "30f015d1c1a393e19c18cd4f43532089c36d4ca328608ce3dda78b74d3d31515",
+      "method_names": [
+        "parseVersion",
+        "parseItem",
+        "stripLeadingZeroes",
+        "compareTo",
+        "getCanonical"
+      ],
+      "family_a": "short numerical release versions",
+      "family_b": "qualifiers, separators, leading zeros and larger legal numeric components"
+    },
+    {
+      "project": "jsoup",
+      "group": "org.jsoup",
+      "artifact": "jsoup",
+      "version": "1.18.3",
+      "target_class": "org.jsoup.internal.StringUtil",
+      "upstream": "https://github.com/jhy/jsoup",
+      "license": "MIT",
+      "url": "https://repo.maven.apache.org/maven2/org/jsoup/jsoup/1.18.3/jsoup-1.18.3.jar",
+      "sha256": "5be1ccd3228ae5fd6eed1bd6d827bac2bc65b91c20e9957d16ea65f739f15302",
+      "method_names": [
+        "normaliseWhitespace",
+        "appendNormalisedWhitespace",
+        "isWhitespace",
+        "isActuallyWhitespace",
+        "isInvisibleChar",
+        "isBlank"
+      ],
+      "family_a": "text with sparse ordinary spaces",
+      "family_b": "long whitespace runs, tabs, invisible and supplementary characters"
+    },
+    {
+      "project": "org-json",
+      "group": "org.json",
+      "artifact": "json",
+      "version": "20240303",
+      "target_class": "org.json.JSONTokener",
+      "upstream": "https://github.com/stleary/JSON-java",
+      "license": "Public-domain (20240303 POM)",
+      "url": "https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar",
+      "sha256": "3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed",
+      "method_names": [
+        "next",
+        "nextClean",
+        "nextString",
+        "nextValue",
+        "nextSimpleValue",
+        "incrementIndexes",
+        "back",
+        "decrementIndexes"
+      ],
+      "family_a": "compact objects with short strings",
+      "family_b": "valid multiline/escaped JSON with arrays, numbers, booleans and longer strings"
+    },
+    {
+      "project": "javapoet",
+      "group": "com.squareup",
+      "artifact": "javapoet",
+      "version": "1.13.0",
+      "target_class": "com.squareup.javapoet.Util",
+      "upstream": "https://github.com/square/javapoet",
+      "license": "Apache-2.0",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/javapoet/1.13.0/javapoet-1.13.0.jar",
+      "sha256": "4c7517e848a71b36d069d12bb3bf46a70fd4cda3105d822b0ed2e19c00b69291",
+      "method_names": [
+        "stringLiteralWithDoubleQuotes",
+        "characterLiteralWithoutSingleQuotes"
+      ],
+      "family_a": "plain Java string literals",
+      "family_b": "quotes, backslashes, control characters, line breaks and Unicode"
+    },
+    {
+      "project": "jts",
+      "group": "org.locationtech.jts",
+      "artifact": "jts-core",
+      "version": "1.20.0",
+      "target_class": "org.locationtech.jts.geom.Envelope",
+      "upstream": "https://github.com/locationtech/jts",
+      "license": "EPL-2.0 OR BSD-3-Clause",
+      "url": "https://repo.maven.apache.org/maven2/org/locationtech/jts/jts-core/1.20.0/jts-core-1.20.0.jar",
+      "sha256": "6a783d8f9dba3d3cf7265435f134402f63c05838aa6cbcc4297ad3a5b2842baf",
+      "method_names": [
+        "init",
+        "isNull",
+        "covers",
+        "intersects",
+        "intersection",
+        "distance"
+      ],
+      "family_a": "mostly overlapping envelopes and contained points",
+      "family_b": "mostly separated envelopes and outside points"
+    }
+  ]
+}

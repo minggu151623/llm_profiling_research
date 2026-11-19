@@ -1,0 +1,11 @@
+{
+  "system": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+  "python": "3.12.13",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "xgboost-cpu": "3.0.2"
+  },
+  "wall_seconds": 2.0830003160000103
+}

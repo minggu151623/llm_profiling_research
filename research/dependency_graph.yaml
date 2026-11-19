@@ -1,78 +1,234 @@
+edge_semantics: A dependency identifies the source or result informing a downstream decision. A literature edge
+  motivates a test. Empirical claims require measured results.
 nodes:
-  - id: RQ
-    type: design
-    owner: both
-    dependencies: []
-    status: proposed
-    acceptance_criteria: Both researchers agree on prediction target, workload population and RQ1–RQ4.
-    evidence_paths: [research/questions.md]
-  - id: graalsp
-    type: paper
-    owner: AI/ML researcher
-    dependencies: []
-    status: partial_text_verified
-    acceptance_criteria: Publisher excerpts and first-author material support the recorded target and method.
-    evidence_paths: [research/literature/reading_notes/graalsp.md, research/literature/papers.bib]
-  - id: graalnn
-    type: paper
-    owner: AI/ML researcher
-    dependencies: []
-    status: full_text_verified
-    acceptance_criteria: Original article sections support the recorded target, method and evaluation.
-    evidence_paths: [research/literature/reading_notes/graalnn.md, research/literature/papers.bib]
-  - id: method-names
-    type: paper
-    owner: AI/ML researcher
-    dependencies: []
-    status: proceedings_abstract_verified
-    acceptance_criteria: The proceedings abstract supports the method-hotness target and lexical comparison.
-    evidence_paths: [research/literature/reading_notes/method-names.md, research/literature/papers.bib]
-  - id: LIT
-    type: literature
-    owner: AI/ML researcher
-    dependencies: [graalsp, graalnn, method-names]
-    status: initial_review
-    acceptance_criteria: Three closest sources have traceable claims and verification limits.
-    evidence_paths: [research/literature/evidence_matrix.csv, research/literature/novelty_map.md]
-  - id: DATA
-    type: measurement
-    owner: Java/JVM engineer and AI/ML reviewer
-    dependencies: [RQ]
-    status: v0_frozen_for_pilot
-    acceptance_criteria: Hand-checkable original edges and two validated workloads under the frozen pilot contract.
-    evidence_paths: [data/schema/README.md, experiments/results/decisions-v0.1/manifest.json]
-  - id: BASE
-    type: modeling
-    owner: AI/ML researcher
-    dependencies: [DATA, LIT]
-    status: planned
-    acceptance_criteria: Run structural and lexical models on a frozen grouped split with held-out projects.
-    evidence_paths: []
-  - id: E1
-    type: experiment
-    owner: AI/ML researcher
-    dependencies: [BASE]
-    status: planned
-    acceptance_criteria: Compare paired SLM predictions with preserved and masked identifiers.
-    evidence_paths: []
-  - id: E2
-    type: experiment
-    owner: both
-    dependencies: [BASE]
-    status: planned
-    acceptance_criteria: Report results and uncertainty on unseen deduplicated projects.
-    evidence_paths: []
-  - id: E3
-    type: experiment
-    owner: both
-    dependencies: [BASE]
-    status: planned
-    acceptance_criteria: Quantify error and coverage changes across workloads on fixed code.
-    evidence_paths: []
-  - id: CLAIMS
-    type: publication
-    owner: both
-    dependencies: [LIT, E1, E2, E3]
-    status: planned
-    acceptance_criteria: Both researchers approve claims linked to reproducible results.
-    evidence_paths: []
+- id: graalsp
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: partial_text_verified
+  acceptance_criteria: Close structural branch regressor
+  evidence_paths:
+  - research/literature/reading_notes/graalsp.md
+  - research/literature/papers.bib
+- id: graalnn
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Direct precedent for structural and contextual branch-probability prediction
+  evidence_paths:
+  - research/literature/reading_notes/graalnn.md
+  - research/literature/papers.bib
+- id: method-names
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: proceedings_abstract_verified
+  acceptance_criteria: Motivates lexical control; branch-probability MAE is a separate target
+  evidence_paths:
+  - research/literature/reading_notes/method-names.md
+  - research/literature/papers.bib
+- id: ball-larus
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Use the name backward-taken/forward-not-taken for our offset rule. Turning each decision
+    into q=0 or 1 is a choice in our protocol.
+  evidence_paths:
+  - research/literature/reading_notes/ball-larus.md
+  - research/literature/papers.bib
+- id: wu-larus
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Document precisely which heuristic and probability assignment were implemented. Record the
+    runtime taken denominator at each JVM site.
+  evidence_paths:
+  - research/literature/reading_notes/wu-larus.md
+  - research/literature/papers.bib
+- id: vespa
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Judge supervised structural regression on our bytecode representation and report representational
+    limits when discussing binary profilers.
+  evidence_paths:
+  - research/literature/reading_notes/vespa.md
+  - research/literature/papers.bib
+- id: raman-li
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: There is a direct precedent for using names to estimate branch probability. Our experiment
+    asks what a frozen code SLM adds over a lexical model on the same original JVM sites.
+  evidence_paths:
+  - research/literature/reading_notes/raman-li.md
+  - research/literature/papers.bib
+- id: codet5
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Compare the same predictor with identifiers present and masked. Measure the change against
+    branch labels rather than using language-model task accuracy as a surrogate.
+  evidence_paths:
+  - research/literature/reading_notes/codet5.md
+  - research/literature/papers.bib
+- id: duplicates
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: author_abstract_verified
+  acceptance_criteria: Keep project families together and inspect residual method or local-context overlap. Record
+    the removal rule and exclusions per fold.
+  evidence_paths:
+  - research/literature/reading_notes/duplicates.md
+  - research/literature/papers.bib
+- id: kim-input
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Pair the same static site across workloads. Quantify the change in empirical taken fraction
+    and report how often a site is observed in only one workload.
+  evidence_paths:
+  - research/literature/reading_notes/kim-input.md
+  - research/literature/papers.bib
+- id: phaedrus
+  type: paper
+  owner: Codex (research)
+  dependencies: []
+  status: primary_text_verified
+  acceptance_criteria: Situate zero-run language-model inference among existing compiler uses of LLMs. Specify target
+    and workload inputs when drawing the comparison.
+  evidence_paths:
+  - research/literature/reading_notes/phaedrus.md
+  - research/literature/papers.bib
+- id: SIG
+  type: ongoing_work
+  owner: Codex (research)
+  dependencies: []
+  status: author_project_page_verified
+  acceptance_criteria: Track the public evidence for the signature-embedding overlap.
+  evidence_paths:
+  - research/literature/search_log.md
+- id: DATA
+  type: measurement
+  owner: Codex (research)
+  dependencies:
+  - graalnn
+  status: measured_reproduced_on_linux
+  acceptance_criteria: Recover original jump and fallthrough offsets and preserve counts by workload.
+  result: 193 original conditional sites in eight libraries; 138 observed under each workload. All 32 JSONL files
+    match between macOS and the Ubuntu 24.04 runner, and output digests agree for all 16 project-workload pairs.
+  evidence_paths:
+  - data/schema/README.md
+  - experiments/study/protocol.md
+  - experiments/study/corpus/manifest.json
+  - experiments/study/linux/corpus-manifest.json
+- id: JAVA
+  type: independent_test
+  owner: Java test collaborator
+  dependencies:
+  - DATA
+  status: awaiting_external_test
+  acceptance_criteria: Record Java verification performed by the collaborator with commit, commands and results.
+  evidence_paths:
+  - experiments/study/protocol.md
+- id: BASE
+  type: baseline
+  owner: Codex (research)
+  dependencies:
+  - ball-larus
+  - wu-larus
+  - vespa
+  - graalsp
+  - DATA
+  status: measured
+  acceptance_criteria: Evaluate the structural baselines on the same sites as the SLM.
+  result: Held-out normal-workload macro MAE 0.429 for uniform 0.5, 0.471 for the direction rule (all sites jump
+    forward, so it predicts 0), 0.326 for structural ridge, 0.311 for structural XGBoost and 0.325 for lexical ridge.
+  evidence_paths:
+  - experiments/study/protocol.md
+  - experiments/study/evaluation/metrics.csv
+- id: SLM
+  type: modeling
+  owner: Codex (research)
+  dependencies:
+  - phaedrus
+  - DATA
+  status: measured
+  acceptance_criteria: Run the frozen model on static-only prompts with a fixed probability readout.
+  result: Zero-shot ratings span 0.339-0.489 (Spearman -0.04 with labels), macro MAE 0.424, +0.099 (0.050 to 0.152)
+    versus lexical ridge. Embedding ridge MAE 0.327, +0.002 (-0.022 to 0.024) versus lexical ridge. Final-prompt
+    states have mean pairwise cosine 0.996; a training-mean-centered refit (exploratory) did not improve accuracy.
+  evidence_paths:
+  - experiments/study/protocol.md
+  - experiments/study/slm/manifest.json
+  - experiments/study/evaluation/paired_deltas.csv
+  - experiments/study/supplement/centered.csv
+- id: E1
+  type: experiment
+  owner: Codex (research)
+  dependencies:
+  - SLM
+  - method-names
+  - codet5
+  - raman-li
+  - SIG
+  status: measured
+  acceptance_criteria: Score the paired lexical and identifier-masked interventions.
+  result: Masking changed macro MAE by +0.001 (-0.002 to 0.004) for the embedding ridge and -0.002 (-0.011 to 0.007)
+    for the zero-shot rating. The paired masking contrasts are exploratory.
+  evidence_paths:
+  - experiments/study/protocol.md
+  - experiments/study/supplement/sensitivity.csv
+- id: E2
+  type: experiment
+  owner: Codex (research)
+  dependencies:
+  - BASE
+  - SLM
+  - duplicates
+  status: measured
+  acceptance_criteria: Report paired held-out project scores after duplicate exclusions.
+  result: Six training rows removed across four folds for local opcode similarity. Seen-project shift MAE fell to
+    0.133-0.137 for structural and embedding ridges, but copying each site's normal label reaches 0.088.
+  evidence_paths:
+  - experiments/study/protocol.md
+  - experiments/study/config.json
+  - experiments/study/evaluation/folds.json
+  - experiments/study/supplement/persistence.csv
+- id: E3
+  type: experiment
+  owner: Codex (research)
+  dependencies:
+  - DATA
+  - kim-input
+  status: measured
+  acceptance_criteria: Compare matched observed sites across input families and record coverage.
+  result: 82 of 138 matched sites changed taken fraction, 42 by more than 0.10. Workload-blind error floor 0.044
+    with projects weighted equally.
+  evidence_paths:
+  - experiments/study/protocol.md
+  - experiments/study/evaluation/workload_shift.csv
+  - experiments/study/evaluation/coverage.csv
+- id: CLAIMS
+  type: synthesis
+  owner: Codex (research)
+  dependencies:
+  - E1
+  - E2
+  - E3
+  status: drafted_awaiting_human_review
+  acceptance_criteria: Trace empirical claims to paired measured data, including uncertainty and limitations.
+  result: Manuscript reports a negative result for the frozen 0.49B SLM, as the go/no-go rule in the research brief
+    prescribes. Authorship, novelty and arXiv submission await the project owner's review.
+  evidence_paths:
+  - research/literature/novelty_map.md
+  - experiments/study/protocol.md
+  - paper/manuscript.md
