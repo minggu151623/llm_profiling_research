@@ -25,3 +25,9 @@ Tám project có tổng 193 vị trí nhánh static, 138 vị trí có support �
 ## Trạng thái checkpoint ban đầu
 
 Checkpoint ghi ngày 19/11/2026 sau thu corpus macOS. Chưa có kết quả Qwen thật hay bảng so sánh được kiểm chứng ở commit 46b3fe0. Tại commit này ml/evaluate.py còn thiếu module summarize. Cần chạy môi trường Linux cố định, inference thật, kiểm tra chống leakage, metrics/CI, literature bổ sung, manuscript và bàn giao kiểm thử Java. Tiến độ sau checkpoint xem mục cập nhật ở cuối file và lịch sử Git.
+
+## Tái lập và đánh giá
+
+Corpus tám project đã được chạy lại trên runner Ubuntu 24.04, khớp cả 32 file JSONL với macOS. Lần chạy Linux gốc là [Actions 44496268635](https://github.com/minggu151623/llm_profiling_research/actions/runs/44496268635). Xem trạng thái và đọc log bằng `gh run view 44496268635`, tải artifact bằng `gh run download 44496268635 -n linux-reference -D /tmp/linux-reference` khi run kết thúc. [PR nghiên cứu](https://github.com/minggu151623/llm_profiling_research/pull/2)
+
+Đã có tổng hợp metric/CI tại `ml/summarize.py`, 11 công trình với liên kết vào DAG, và hướng dẫn kiểm tra độc lập tại [java/TESTING.md](java/TESTING.md). Khi có corpus/SLM/evaluation tương ứng, kiểm tra toàn bộ join, checksum, macro MAE và tính bất biến giữa hai workload bằng `python3 scripts/verify_study.py CORPUS SLM EVALUATION`. Cache JAR mặc định của runner ở `~/.cache/branch-study/jars`.
