@@ -38,4 +38,12 @@ Bản thảo [paper/manuscript.md](paper/manuscript.md) đã có abstract, kết
 
 Kết quả chính: rating zero-shot gần như hằng số (0.34–0.49, Spearman −0.04), MAE 0.424 so với 0.429 của 0.5 và 0.325 của lexical ridge. Embedding ridge bằng lexical ridge (+0.002, CI −0.022 đến 0.024). Hidden state của Qwen có cosine trung bình 0.996 nên ridge gần như chỉ dùng phần structural. Lần chạy exploratory trừ trung bình train ([ml/centered.py](ml/centered.py)) không cải thiện (+0.017 so với lexical). Các phân tích masking, support, persistence và centering được ghi rõ là exploratory.
 
-Còn mở: kiểm thử Java độc lập của cộng sự vẫn chờ kết quả thực tế. Bản thảo chưa có danh sách tác giả, chưa chuyển sang LaTeX và chưa có quyết định nộp arXiv. CI `score.yml` chạy cả hai bước supplement trên Linux ([Actions 44499327262](https://github.com/minggu151623/llm_profiling_research/actions/runs/44499327262)); `centered.csv` trong repo lấy từ lần chạy đó, còn bản macOS lệch dưới 2 × 10⁻⁷.
+Còn mở: kiểm thử Java độc lập của cộng sự vẫn chờ kết quả thực tế. Bản thảo chưa có danh sách tác giả và chưa có quyết định nộp arXiv. CI `score.yml` chạy cả hai bước supplement trên Linux ([Actions 44499327262](https://github.com/minggu151623/llm_profiling_research/actions/runs/44499327262)); `centered.csv` trong repo lấy từ lần chạy đó, còn bản macOS lệch dưới 2 × 10⁻⁷.
+
+## Cập nhật 21/11/2026: LaTeX và GraalSP
+
+Bản LaTeX nằm ở [paper/main.tex](paper/main.tex). Chạy `./paper/build.sh` (cần Tectonic) để có `paper/build/main.pdf` và gói `paper/build/arxiv.tar.gz` cho arXiv. Mỗi lần sửa nội dung phải sửa cả `manuscript.md` lẫn `main.tex`. [scripts/check_paper.py](scripts/check_paper.py) kiểm tra ba điều: con số hai bản khớp nhau, link tương đối trong Markdown còn tồn tại, và mọi `\repo{...}` có mặt ở commit ghi trong `\repocommit`. Workflow `paper.yml` chạy script này mỗi khi `paper/` thay đổi. Khi thêm link tới file mới, commit file đó trước rồi đổi `\repocommit` sang commit ấy.
+
+Không đọc được toàn văn bài GraalSP trên tạp chí (ScienceDirect trả về 403). Luận án tiến sĩ năm 2025 của tác giả thứ nhất thì đọc được toàn văn. Bảng 6.2 trong luận án báo cáo RMSE 0.299 và R² 0.551 cho XGBoost, trên các chương trình benchmark tách riêng khỏi 323.350 nhánh dùng để train. Vì vậy câu "GraalSP không báo cáo sai số cấp nhánh" trong bản thảo đã được thay bằng con số này. Bản thảo cũng ghi thêm RMSE gộp của dự án ([ml/rmse.py](ml/rmse.py)): structural XGBoost 0.381, hằng số 0.5 là 0.442. Phân tích này là mô tả, không đăng ký trước. Chi tiết và số trang nằm ở [reading note](research/literature/reading_notes/graalsp.md).
+
+Còn chờ chủ dự án: danh sách tác giả, câu khai báo AI (hiện chỉ nhắc Codex) và quyết định nộp arXiv. Kiểm thử Java độc lập vẫn chờ cộng sự.
