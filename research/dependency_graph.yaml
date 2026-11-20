@@ -5,10 +5,13 @@ nodes:
   type: paper
   owner: Codex (research)
   dependencies: []
-  status: partial_text_verified
+  status: dissertation_verified_journal_partial
   acceptance_criteria: Close structural branch regressor
+  result: The first author's 2025 dissertation reports held-out RMSE 0.299 and R2 0.551 for XGBoost on benchmark
+    programs separate from 323,350 training branches in 44 libraries. The journal full text remained inaccessible.
   evidence_paths:
   - research/literature/reading_notes/graalsp.md
+  - research/literature/evidence_matrix.csv
   - research/literature/papers.bib
 - id: graalnn
   type: paper
