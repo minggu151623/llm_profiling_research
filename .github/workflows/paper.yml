@@ -19,3 +19,22 @@ jobs:
         with:
           python-version: '3.12.13'
       - run: python scripts/check_paper.py
+  pdflatex:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
+      - name: Build with pdfLaTeX and BibTeX, as arXiv does
+        run: |
+          mkdir build && cp paper/main.tex paper/project-results.png build/
+          cp research/literature/papers.bib build/references.bib
+          cd build
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -E 'undefined|Overfull' main.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: paper-pdflatex
+          path: build/main.pdf
