@@ -4,7 +4,7 @@ Mũi tên chỉ từ nguồn đến quyết định sử dụng nguồn đó. V�
 
 ```mermaid
 flowchart LR
-    graalsp["GraalSP"]
+    graalsp["GraalSP<br/>RMSE 0.299 trên benchmark"]
     graalnn["GraalNN"]
     method_names["Method Names"]
     ball_larus["Ball–Larus"]
@@ -54,7 +54,7 @@ flowchart LR
 
 | Công trình | Quyết định liên quan | Nguồn |
 | --- | --- | --- |
-| [GraalSP (2024)](reading_notes/graalsp.md) | Dự đoán cạnh Graal IR bằng đặc trưng cấu trúc. | [Bài gốc](https://doi.org/10.1016/j.jss.2024.112058) |
+| [GraalSP (2024)](reading_notes/graalsp.md) | Dự đoán cạnh Graal IR bằng đặc trưng cấu trúc. Luận án của tác giả báo cáo RMSE 0.299 trên chương trình test tách riêng; bản thảo dùng con số này để so quy mô, không so cặp. | [Bài gốc](https://doi.org/10.1016/j.jss.2024.112058) · [Luận án, bảng 6.2](https://uvidok.rcub.bg.ac.rs/handle/123456789/6474) |
 | [GraalNN (2025)](reading_notes/graalnn.md) | Liên kết chiều cạnh IR và đích nhảy bytecode. | [Bài gốc](https://doi.org/10.1145/3696443.3708958) |
 | [Method Names (2025)](reading_notes/method-names.md) | Baseline từ vựng cho giả thuyết về tên. | [Bài gốc](https://research.matf.bg.ac.rs/handle/123456789/3037) |
 | [Ball–Larus (1993)](reading_notes/ball-larus.md) | Phân biệt heuristic vòng lặp với dấu offset. | [Bài gốc](https://ftp.cs.wisc.edu/pub/techreports/1993/TR1137.pdf) |

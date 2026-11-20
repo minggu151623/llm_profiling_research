@@ -21,6 +21,7 @@ jobs:
       - run: python ml/figures.py result/evaluation result/project-results.png
       - run: python ml/sensitivity.py result/evaluation/predictions.csv result/supplement
       - run: python ml/centered.py experiments/study/corpus experiments/study/slm result/supplement
+      - run: python ml/rmse.py result/evaluation/predictions.csv result/supplement
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: reference-scores
