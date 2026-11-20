@@ -2,7 +2,7 @@
 
 This file is for the team member who tests the Java side independently. It covers the bytecode instrumentation, the jump direction of each recorded edge, the execution counts and whether the corpus can be rebuilt from scratch.
 
-Status: the maintainer ran every check below on macOS arm64 on 19 November 2026, and GitHub Actions reproduced the corpus on Ubuntu 24.04. Your own run has not been recorded yet. For checks you perform by reading bytecode and counting inputs yourself, see [MANUAL_TESTING.md](MANUAL_TESTING.md).
+Status: the maintainer ran every check below on macOS arm64 on 19 November 2026 and again on 21 November 2026 at commit 18a4f3b, including M1 to M7, and GitHub Actions reproduced the corpus on Ubuntu 24.04. These are not independent runs. Your own run has not been recorded yet. For checks you perform by reading bytecode and counting inputs yourself, see [MANUAL_TESTING.md](MANUAL_TESTING.md).
 
 ## Requirements
 
