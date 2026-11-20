@@ -230,8 +230,12 @@ nodes:
   status: drafted_awaiting_human_review
   acceptance_criteria: Trace empirical claims to paired measured data, including uncertainty and limitations.
   result: Manuscript reports a negative result for the frozen 0.49B SLM, as the go/no-go rule in the research brief
-    prescribes. Authorship, novelty and arXiv submission await the project owner's review.
+    prescribes. The LaTeX version compiles with pdfLaTeX in CI and matches the Markdown number for number; the
+    arXiv sheet is ready. Authorship, licence, endorsement and submission await the project owner.
   evidence_paths:
   - research/literature/novelty_map.md
   - experiments/study/protocol.md
   - paper/manuscript.md
+  - paper/main.tex
+  - paper/ARXIV.md
+  - scripts/check_paper.py
