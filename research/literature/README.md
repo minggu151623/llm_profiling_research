@@ -23,7 +23,7 @@ flowchart LR
     E1["RQ2 · Che tên định danh<br/>thay đổi ≤ 0.003"]
     E2["RQ3 · Project chưa thấy<br/>không hơn lexical ridge"]
     E3["RQ4 · Workload mới<br/>sàn sai số 0.044"]
-    CLAIMS["Kết quả và giới hạn<br/>bản thảo chờ duyệt"]
+    CLAIMS["Kết quả và giới hạn<br/>LaTeX sẵn sàng, chờ tác giả duyệt"]
     graalnn --> DATA
     DATA --> JAVA
     ball_larus --> BASE
