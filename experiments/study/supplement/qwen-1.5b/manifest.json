@@ -1,0 +1,126 @@
+{
+  "model": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "weights_license": "Apache-2.0",
+  "model_sha256": {
+    "model.safetensors": "c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8",
+    "config.json": "88f9a17863c05fb313515d2ff74b1098e0c35579f99068e32beda00618508ae0",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "959e7f1d9a1b7641a6d6ce05ca97b75c7894fcb66cbe5a040406458fb1128ee4",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+  },
+  "input_sha256": {
+    "commons-codec/static.jsonl": "3edee768615a5b67920dc469129423a5671fea6e5514a4fabba06c5098273fd3",
+    "commons-codec/context.jsonl": "b0c71d0cd2d3cf3b08f7bbd12a89e5c1adc4b44857dd8d29abb291d3b58e748e",
+    "guava/static.jsonl": "2e09a4ed562e03092043a01857548751f36d292adab32b6eec9a7c5575ccc8c4",
+    "guava/context.jsonl": "4c92587a423fee012373ea691da28e8755f9267a5acd1fb40418992520eab347",
+    "javapoet/static.jsonl": "3bdd82125944597526af6419cde5c603bc72b2cbfd3a9c43df6ee98d99c8e4c0",
+    "javapoet/context.jsonl": "13e6df8e49ad774c0019bfafeae62c5b2279a4eaa04556ff9990d7316a51787e",
+    "joda-time/static.jsonl": "5b8e5dbc076e1031e41cdc523ba0d445ad7139f2c84a27e4ed5809b473b819e6",
+    "joda-time/context.jsonl": "774e8523a53e66f945b7b947ca07acd73a44699f11e88a8024568a5e158f39b9",
+    "jsoup/static.jsonl": "209988581391853fa9aac021e4172cfe8d940f5d8a647c996525072418107d01",
+    "jsoup/context.jsonl": "454434d15422e9ab1ccb2819626d453e6a70adfce284205579b93848a429c3d1",
+    "jts/static.jsonl": "e73f29bef9575ee7540a6ac92b0fccd9080bdc36e62fe3b58a4a187771d071cb",
+    "jts/context.jsonl": "27a814f610ceeaa6cfca42232e961b635c6ced34fd2ce93f8a3297c1b5e4fa96",
+    "maven-artifact/static.jsonl": "7d7f4f3301f23464697722e107762d9fce51dd078a04e4e8c111ae540f78827b",
+    "maven-artifact/context.jsonl": "c24289a538e8cb51eeb469667fa035bd08df863855ec99fcbc9b96927d5ffd79",
+    "org-json/static.jsonl": "077555898cb6764780e0cf56f6d40357593c94465785de69aadb6b0c901f58c5",
+    "org-json/context.jsonl": "f2b8cdc99f8f63ee2594fd07cab20f8e3311653657c87401258664af538b4954"
+  },
+  "script_sha256": "53b8ff9e09436c22b71d24d6b2168d1bfdf84e16e1efe062e96825a5b1d19641",
+  "seed": 42,
+  "cap_per_project": 96,
+  "digit_token_ids": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "system_prompt": "Estimate a conditional branch's taken frequency from its static Java bytecode. Taken means jumping to the target, rather than continuing at fall-through. Assume a typical unknown workload. Give exactly one digit from 0 (never taken) to 9 (always taken), with equal probability intervals between adjacent digits.",
+  "counts": {
+    "commons-codec": {
+      "inventoried": 12,
+      "selected": 12
+    },
+    "guava": {
+      "inventoried": 24,
+      "selected": 24
+    },
+    "javapoet": {
+      "inventoried": 6,
+      "selected": 6
+    },
+    "joda-time": {
+      "inventoried": 22,
+      "selected": 22
+    },
+    "jsoup": {
+      "inventoried": 23,
+      "selected": 23
+    },
+    "jts": {
+      "inventoried": 60,
+      "selected": 60
+    },
+    "maven-artifact": {
+      "inventoried": 23,
+      "selected": 23
+    },
+    "org-json": {
+      "inventoried": 23,
+      "selected": 23
+    }
+  },
+  "successful_pairs": 193,
+  "failed_pairs": 0,
+  "device": "cpu",
+  "dtype": "torch.float32",
+  "platform": "Linux-7.0.0-1014-aws-x86_64-with-glibc2.39",
+  "python": "3.12.13",
+  "packages": {
+    "torch": "2.10.0+cpu",
+    "transformers": "5.20.2",
+    "tokenizers": "0.23.3",
+    "numpy": "2.1.3",
+    "safetensors": "0.8.0",
+    "huggingface_hub": "2.3.0"
+  },
+  "batch_size": 8,
+  "cpu_threads": 4,
+  "setup_seconds": 11.523490615000014,
+  "forward_seconds": {
+    "full": 359.51191514000004,
+    "masked": 320.6808227519999
+  },
+  "elapsed_seconds_before_export": 691.867193759,
+  "prompt_tokens": {
+    "full": 42751,
+    "masked": 38022
+  },
+  "min_max_tokens": {
+    "full": [
+      165,
+      277
+    ],
+    "masked": [
+      159,
+      217
+    ]
+  },
+  "truncated_instruction_contexts": {
+    "full": 0,
+    "masked": 0
+  },
+  "remote_inference_calls": 0,
+  "outputs_sha256": {
+    "embeddings.npz": "e27b1daa6894d7ba6beb7d360dd4cf3a81247449ff5b7eb763697fedaafa75b1",
+    "predictions.jsonl": "8066291fbcaf3760359a90e669e62b06176aa0debc16a28cca08f8d30e7d30a1"
+  }
+}
