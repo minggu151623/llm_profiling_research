@@ -169,11 +169,14 @@ nodes:
   result: Zero-shot ratings span 0.339-0.489 (Spearman -0.04 with labels), macro MAE 0.424, +0.099 (0.050 to 0.152)
     versus lexical ridge. Embedding ridge MAE 0.327, +0.002 (-0.022 to 0.024) versus lexical ridge. Final-prompt
     states have mean pairwise cosine 0.996; a training-mean-centered refit (exploratory) did not improve accuracy.
+    An exploratory 1.5B rerun gave zero-shot MAE 0.435 and embedding ridge MAE 0.326, +0.001 (-0.023 to 0.024)
+    versus lexical ridge.
   evidence_paths:
   - experiments/study/protocol.md
   - experiments/study/slm/manifest.json
   - experiments/study/evaluation/paired_deltas.csv
   - experiments/study/supplement/centered.csv
+  - experiments/study/supplement/scale.csv
 - id: E1
   type: experiment
   owner: Codex (research)
