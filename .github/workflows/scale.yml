@@ -2,7 +2,7 @@ name: Exploratory 1.5B model run
 on:
   push:
     branches: [research/empirical-study]
-    paths: ['ml/slm/scale.py', 'ml/scale.py', '.github/workflows/scale.yml']
+    paths: ['ml/slm/scale.py', '.github/workflows/scale.yml']
   workflow_dispatch:
 permissions:
   contents: read

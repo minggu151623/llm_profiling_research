@@ -91,7 +91,7 @@ def main(corpus, slm, registered, out, config):
         return dict(macro_mae=a.mean(), reference_mae=b.mean(), mean_delta=delta.mean(), ci_low=lo, ci_high=hi,
                     projects_lower_mae=int((delta < 0).sum()))
 
-    table = []
+    table, per_project = [], []
     for setting, workload in (("unseen", "normal"), ("unseen", "shift"), ("seen", "shift")):
         lexical = project_mae(new_rows, labels, setting, workload, "lexical_ridge")
         for model in SLM_MODELS:
@@ -99,11 +99,14 @@ def main(corpus, slm, registered, out, config):
                 continue
             new = project_mae(new_rows, labels, setting, workload, model)
             old = project_mae(old_rows, labels, setting, workload, model)
+            per_project.extend(dict(setting=setting, workload=workload, project=p, model=f"qwen1.5b_{model}",
+                                    mae=new[p]) for p in projects)
             table.append(dict(setting=setting, workload=workload, model=f"qwen1.5b_{model}", reference="lexical_ridge",
                               **contrast(new, lexical)))
             table.append(dict(setting=setting, workload=workload, model=f"qwen1.5b_{model}", reference=f"qwen0.5b_{model}",
                               **contrast(new, old)))
     write_rows(out / "scale.csv", table)
+    write_rows(out / "scale_project_metrics.csv", per_project)
 
     inference = study_data.read_index(slm / "predictions.jsonl")
     manifest = json.loads((slm / "manifest.json").read_text())

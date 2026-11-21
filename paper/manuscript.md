@@ -82,7 +82,7 @@ For the second primary contrast, the full embedding ridge differed from lexical 
 
 ![Held-out MAE by project and per-site workload change](project-results.png)
 
-**Figure 1.** Left: unseen-project MAE on the normal workload for the zero-shot readout, lexical ridge and full embedding ridge. Right: absolute change in each observed site's taken fraction between the two workloads; the bar marks the project mean. [Plotting script](../ml/figures.py)
+**Figure 1.** Left: unseen-project MAE on the normal workload for the zero-shot readout, lexical ridge and full embedding ridge. Hollow markers show the exploratory 1.5B readouts. Right: absolute change in each observed site's taken fraction between the two workloads; the bar marks the project mean. [Plotting script](../ml/figures.py)
 
 Calibration bins show where the fitted models err. The zero-shot ratings placed 112 of 138 sites in the 0.4–0.5 bin. The full embedding ridge was overconfident at both ends: eight sites in the lowest bin, with mean prediction 0.03, had a measured mean of 0.22, and the ten sites in the two highest bins, with mean predictions 0.83 and 0.98, had measured means of 0.52 and 0.66. [Calibration table](../experiments/study/evaluation/calibration.csv) · [Opcode strata](../experiments/study/evaluation/opcode_metrics.csv)
 
