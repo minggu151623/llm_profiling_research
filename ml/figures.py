@@ -15,7 +15,7 @@ def rows(path):
         return list(csv.DictReader(stream))
 
 
-def main(results, output):
+def main(results, output, scale=None):
     data = rows(results/"project_metrics.csv")
     errors = {(r["project"], r["model"]):float(r["mae"]) for r in data
               if r["workload"]=="normal" and r["setting"]=="unseen"}
@@ -32,6 +32,14 @@ def main(results, output):
         ("embedding_full","Embedding ridge","D","#4E4A88")]:
         a.scatter([errors[n,model] for n in names],positions,marker=marker,color=color,
                   edgecolors="white",linewidths=.6,s=46,zorder=2,label=label)
+    if scale:
+        # Exploratory 1.5B readouts: hollow markers in the colors of the matching 0.49B readouts.
+        larger = {(r["project"], r["model"]): float(r["mae"]) for r in rows(scale)
+                  if r["workload"] == "normal" and r["setting"] == "unseen"}
+        for model, label, marker, color in [("qwen1.5b_zero_full", "Zero-shot, 1.5B", "o", "#A04621"),
+                                            ("qwen1.5b_embedding_full", "Embedding ridge, 1.5B", "D", "#4E4A88")]:
+            a.scatter([larger[n, model] for n in names], positions, marker=marker, facecolors="none",
+                      edgecolors=color, linewidths=1.1, s=46, zorder=3, label=label)
     a.set_yticks(positions,names)
     a.invert_yaxis()
     a.set_xlabel("Mean absolute error")
@@ -57,5 +65,6 @@ if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("evaluation",type=Path)
     parser.add_argument("output",type=Path)
+    parser.add_argument("--scale",type=Path,help="Exploratory 1.5B per-project table from ml/scale.py")
     args=parser.parse_args()
-    main(args.evaluation,args.output)
+    main(args.evaluation,args.output,args.scale)
