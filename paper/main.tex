@@ -28,7 +28,9 @@
 \newcommand{\artifacts}[1]{\footnote{Artifacts: #1.}}
 
 \title{Can a small code model predict JVM branch probabilities?}
-\author{Tran Vu Bao Minh}
+% The second author is the Java test collaborator. paper/build.sh refuses to pack the arXiv upload
+% while the placeholder below remains.
+\author{Tran Vu Bao Minh \and [COAUTHOR NAME AND AFFILIATION]}
 \date{}
 
 \begin{document}
@@ -179,7 +181,7 @@ The eight repositories are a convenience sample. Within each, a single class and
 
 The experiment tests one small model, one static window size, one fixed prompt and one pooled hidden state at the final prompt position. A change under masking can reflect prompt length, tokenization or familiarity with published identifiers, as well as semantics. The code model's pretraining exposure to the libraries is unknown. Downstream overlap checks inspect opcodes and local windows and cannot exclude every functional duplicate. Supervised SLM and lexical models share structural features; their difference measures their incremental representations under a common linear regressor. A claim about a larger model, different prompt, full-program CFG or production compiler requires a separate experiment.\artifacts{\repo{experiments/study/protocol.md}{representation and comparison plan}}
 
-The repository includes JAR URLs and digests, workload descriptions, original-BCI records, a static context for each site, counts under each workload, the pinned model and environment specifications, and scripts to regenerate predictions and tables. The study measures edge-label accuracy and records computational costs for this protocol. It does not measure optimized program throughput or deployment speedup. Research design, implementation, analysis and drafting were assisted by AI coding agents, OpenAI Codex and Anthropic Claude Code, under project-owner delegation. The collaborator's assigned role is independent Java testing. The handoff records the checks and expected outputs for that role.\artifacts{\repo{experiments/study/README.md}{reproduction commands}; \repo{java/TESTING.md}{Java test handoff}}
+The repository includes JAR URLs and digests, workload descriptions, original-BCI records, a static context for each site, counts under each workload, the pinned model and environment specifications, and scripts to regenerate predictions and tables. The study measures edge-label accuracy and records computational costs for this protocol. It does not measure optimized program throughput or deployment speedup. Research design, implementation, analysis and drafting were assisted by AI coding agents, OpenAI Codex and Anthropic Claude Code, under project-owner delegation. The second author's role is independent testing of the Java instrumentation and corpus. The handoff records the checks and expected outputs for that role.\artifacts{\repo{experiments/study/README.md}{reproduction commands}; \repo{java/TESTING.md}{Java test handoff}}
 
 The registered analysis covers Table~\ref{tab:results}, the two primary paired contrasts against lexical ridge, the seen-project fits and the workload floor. The masked representations were registered, but the paired masking and support contrasts, the persistence comparator, the pooled RMSE and the centered-embedding rerun were specified after the primary results were available and are exploratory. The supplementary tables come from the Linux scoring workflow that produced the registered tables, with SciPy 1.15.3. The pooled RMSE is computed directly from the registered predictions.\artifacts{\repo{experiments/study/supplement}{supplementary tables}}
 
