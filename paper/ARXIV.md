@@ -4,9 +4,9 @@ Fields to paste into the arXiv submission form. Upload `paper/build/arxiv.tar.gz
 
 ## Decisions for the project owner
 
-- **Authors.** The LaTeX source lists only Tran Vu Bao Minh, without an affiliation. Decide whether the Java test collaborator is an author or is thanked in an acknowledgement.
+- **Authors.** Decided on 21 November 2026: the Java test collaborator is the second author. Their name and affiliation are still needed. `paper/main.tex` carries the placeholder `[COAUTHOR NAME AND AFFILIATION]`, and `paper/build.sh` refuses to pack the upload until it is replaced. Neither author has an affiliation yet.
 - **AI disclosure.** The Limitations section states that OpenAI Codex and Anthropic Claude Code assisted with design, implementation, analysis and drafting. Confirm the wording. arXiv holds the listed authors responsible for the whole submission.
-- **License.** arXiv asks for one at submission. CC BY 4.0 lets others reuse the text with attribution; the arXiv non-exclusive licence is the most restrictive option.
+- **License.** Decided on 21 November 2026: CC BY 4.0, which lets others reuse the text with attribution.
 - **Endorsement.** A first submission to a category may need an endorsement from an existing arXiv author in that category.
 
 ## Metadata
