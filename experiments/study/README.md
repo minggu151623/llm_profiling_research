@@ -46,4 +46,11 @@ These analyses were specified after the primary results and are labelled explora
 /tmp/branch-eval-env/bin/python ml/rmse.py experiments/study/evaluation/predictions.csv /tmp/jvm-reference/supplement
 ```
 
+The exploratory 1.5B rerun keeps the registered prompts, readouts and folds and swaps only the checkpoint. The workflow `scale.yml` runs it on Linux; [the committed outputs](supplement/qwen-1.5b/) come from Actions run 44862417201. Inference downloads about 3 GB of pinned weights.
+
+```sh
+python ml/slm/scale.py experiments/study/corpus /tmp/slm-1.5b --device cpu --threads 4 --batch-size 8
+cd ml && /tmp/branch-eval-env/bin/python scale.py ../experiments/study/corpus /tmp/slm-1.5b ../experiments/study/evaluation /tmp/jvm-reference/supplement
+```
+
 On macOS, the xgboost wheel loads `libomp.dylib` at import. If Homebrew's libomp is absent, point `DYLD_FALLBACK_LIBRARY_PATH` at a directory containing only that library.

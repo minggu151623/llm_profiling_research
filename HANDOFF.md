@@ -51,3 +51,9 @@ Câu khai báo AI giờ ghi cả OpenAI Codex và Anthropic Claude Code, đúng 
 ## Cập nhật 21/11/2026: chạy lại kiểm thử Java trên main
 
 Sau khi merge PR #5–#9, người duy trì repo đã chạy lại toàn bộ [TESTING.md](java/TESTING.md) và [MANUAL_TESTING.md](java/MANUAL_TESTING.md) trên `main` tại commit 18a4f3b, với Temurin 25.0.5.1+2 và Maven 3.9.11 trên macOS arm64. Kết quả: JUnit 5/5 đạt; dựng lại corpus từ đầu cho 32/32 file JSONL giống hệt bản trong repo; `verify_study.py` đạt; M1 đến M7 đều cho đúng kết quả tài liệu ghi (M6 đạt 16/16 cho cả manifest trong repo lẫn manifest mới, M7 bị từ chối với `Corpus digest mismatch`). Đây không phải kiểm thử độc lập, nên node `JAVA` trên DAG vẫn ở trạng thái `awaiting_external_test`.
+
+## Cập nhật 21/11/2026: thử model 1.5B, tác giả và giấy phép
+
+Theo lựa chọn của chủ dự án, mình chạy thêm một thí nghiệm exploratory với Qwen2.5-Coder-1.5B-Instruct (revision `2e1fd397`) trên Linux ([Actions 44862417201](https://github.com/minggu151623/llm_profiling_research/actions/runs/44862417201)). Prompt, cách đọc kết quả và các fold giữ nguyên; tokenizer giống hệt bản 0.5B. Kết quả không đổi kết luận. Rating zero-shot nằm trong 0.499–0.557, Spearman 0.02, MAE 0.435, chênh +0.110 (0.061 đến 0.159) so với lexical ridge. Embedding ridge đạt MAE 0.326, chênh +0.001 (−0.023 đến 0.024) so với lexical ridge và −0.001 so với bản 0.5B. Output nằm ở [supplement/qwen-1.5b](experiments/study/supplement/qwen-1.5b/), bảng so sánh ở [scale.csv](experiments/study/supplement/scale.csv). Chấm lại trên macOS lệch tối đa 3 × 10⁻⁷.
+
+Người kiểm thử Java sẽ là tác giả thứ hai. `paper/main.tex` đang giữ chỗ `[COAUTHOR NAME AND AFFILIATION]`, và `paper/build.sh` sẽ không tạo gói arXiv cho đến khi chỗ này được thay bằng tên thật. Giấy phép arXiv đã chọn là CC BY 4.0.

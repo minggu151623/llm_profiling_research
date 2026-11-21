@@ -19,7 +19,7 @@ flowchart LR
     DATA["Cạnh bytecode gốc<br/>193 nhánh, 138 có nhãn"]
     JAVA["Kiểm thử Java độc lập<br/>chờ cộng sự"]
     BASE["RQ1 · Baseline cấu trúc<br/>MAE 0.311–0.326"]
-    SLM["RQ1 · SLM zero-shot và embedding<br/>MAE 0.424 và 0.327"]
+    SLM["RQ1 · SLM zero-shot và embedding<br/>MAE 0.424 và 0.327<br/>bản 1.5B: 0.435 và 0.326"]
     E1["RQ2 · Che tên định danh<br/>thay đổi ≤ 0.003"]
     E2["RQ3 · Project chưa thấy<br/>không hơn lexical ridge"]
     E3["RQ4 · Workload mới<br/>sàn sai số 0.044"]
