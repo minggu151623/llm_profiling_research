@@ -30,7 +30,7 @@ def markdown_numbers(text):
 def latex_numbers(text):
     text = text[text.index(r"\begin{abstract}"):]
     for pattern in (r"\\repo\{[^}]*\}", r"\\href\{[^}]*\}", r"\\citep(\[[^\]]*\])?\{[^}]*\}",
-                    r"\\texttt\{ea3f[0-9a-f]+\}", r"\\cmidrule\([^)]*\)\{[^}]*\}", r"\\setlength\{[^}]*\}\{[^}]*\}",
+                    r"\\texttt\{[0-9a-f]{7,40}\}", r"\\cmidrule\([^)]*\)\{[^}]*\}", r"\\setlength\{[^}]*\}\{[^}]*\}",
                     r"\\multicolumn\{\d+\}", r"\\frac\{[^{}]*(\{[^{}]*\}[^{}]*)*\}\{2\}", r"\\(label|ref)\{[^}]*\}"):
         text = re.sub(pattern, "", text)
     return Counter(NUMBER.findall(text))
