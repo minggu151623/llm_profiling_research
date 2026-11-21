@@ -18,7 +18,8 @@ jobs:
       - run: python -m unittest discover -s data/tests -v && python -m unittest discover -s ml -p 'test_*.py' -v
       - run: python ml/evaluate.py experiments/study/corpus experiments/study/slm result/evaluation
       - run: python scripts/verify_study.py experiments/study/corpus experiments/study/slm result/evaluation
-      - run: python ml/figures.py result/evaluation result/project-results.png
+      - run: cd ml && python scale.py ../experiments/study/corpus ../experiments/study/supplement/qwen-1.5b ../result/evaluation ../result/supplement
+      - run: python ml/figures.py result/evaluation result/project-results.png --scale result/supplement/scale_project_metrics.csv
       - run: python ml/sensitivity.py result/evaluation/predictions.csv result/supplement
       - run: python ml/centered.py experiments/study/corpus experiments/study/slm result/supplement
       - run: python ml/rmse.py result/evaluation/predictions.csv result/supplement
