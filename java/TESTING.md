@@ -62,7 +62,7 @@ The new `manifest.json` in your output directory records your JDK, OS and archit
 
 ## Report your result
 
-Copy this block into the pull request or send it to the project owner:
+Copy this block into the pull request or send it to the project owner. `python3 scripts/java_report.py` runs the automated steps above and prints the block with those fields filled in; it leaves M1 to M7 blank for you to complete by hand.
 
 ```text
 Commit tested:
