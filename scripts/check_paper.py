@@ -4,6 +4,7 @@
    and LaTeX layout arguments.
 2. Every relative link in the Markdown must point to a file or directory in this checkout.
 3. Every \\repo{path} in the LaTeX must exist at the commit named by \\repocommit.
+4. The Figure 1 script and its three input tables must match the pinned versions.
 Uses only the standard library and git.
 """
 from collections import Counter
@@ -54,6 +55,19 @@ def main():
         found = subprocess.run(["git", "cat-file", "-e", f"{commit}:{path}"], cwd=ROOT, capture_output=True)
         if found.returncode:
             problems.append(f"main.tex links to {path}, which is absent at {commit[:7]}")
+
+    figure_inputs = (
+        "ml/figures.py",
+        "experiments/study/evaluation/project_metrics.csv",
+        "experiments/study/evaluation/workload_shift.csv",
+        "experiments/study/supplement/scale_project_metrics.csv",
+    )
+    for path in figure_inputs:
+        difference = subprocess.run(
+            ["git", "diff", "--quiet", commit, "--", path], cwd=ROOT,
+        )
+        if difference.returncode:
+            problems.append(f"Figure 1 input {path} differs from the version at {commit[:7]}")
 
     if problems:
         sys.exit("\n".join(problems))

@@ -4,7 +4,7 @@ The preregistered experiment holds out entire repositories for testing and treat
 
 ## 1. Reproduce the Java labels
 
-Run with Eclipse Temurin 25.0.5.1+2, Maven 3.9.11 and Python 3.12.13. Point JAVA_HOME at this JDK and put its bin directory and Maven on PATH. Each destination below is a new directory. The runner verifies original JAR hashes, compares each selected conditional against javap, and compares original/instrumented output digests for all 16 project–workload pairs.
+Run with Eclipse Temurin 25.0.5.1+2, Maven 3.9.11 and Python 3.12.13. Point JAVA_HOME at this JDK and put its bin directory and Maven on PATH. Run the commands below from the repository root and use a fresh output directory. The runner verifies original JAR hashes, compares each selected conditional against javap, and compares original/instrumented output digests for all 16 project–workload pairs.
 
 ```sh
 python scripts/corpus.py /tmp/jvm-reference/corpus
@@ -31,7 +31,6 @@ The evaluator checks IDs across files, joins the two workloads only after static
 python3.12 -m venv /tmp/branch-eval-env
 /tmp/branch-eval-env/bin/pip install -r ml/requirements.txt
 /tmp/branch-eval-env/bin/python ml/evaluate.py /tmp/jvm-reference/corpus /tmp/jvm-reference/slm /tmp/jvm-reference/evaluation
-/tmp/branch-eval-env/bin/python ml/figures.py /tmp/jvm-reference/evaluation /tmp/jvm-reference/project-results.png
 ```
 
 The output directory must be new for each run. Runtime metadata is machine-specific. Use per-site ID, workload counts, per-project errors, and paired deltas to compare reruns.
@@ -49,8 +48,22 @@ These analyses were specified after the primary results and are labelled explora
 The exploratory 1.5B rerun keeps the registered prompts, readouts and folds and swaps only the checkpoint. The workflow `scale.yml` runs it on Linux; [the committed outputs](supplement/qwen-1.5b/) come from Actions run 44862417201. Inference downloads about 3 GB of pinned weights.
 
 ```sh
-python ml/slm/scale.py experiments/study/corpus /tmp/slm-1.5b --device cpu --threads 4 --batch-size 8
-cd ml && /tmp/branch-eval-env/bin/python scale.py ../experiments/study/corpus /tmp/slm-1.5b ../experiments/study/evaluation /tmp/jvm-reference/supplement
+/tmp/branch-slm-env/bin/python ml/slm/scale.py /tmp/jvm-reference/corpus /tmp/slm-1.5b --device cpu --threads 4 --batch-size 8
+/tmp/branch-eval-env/bin/python ml/scale.py /tmp/jvm-reference/corpus /tmp/slm-1.5b /tmp/jvm-reference/evaluation /tmp/jvm-reference/supplement
 ```
 
 On macOS, the xgboost wheel loads `libomp.dylib` at import. If Homebrew's libomp is absent, point `DYLD_FALLBACK_LIBRARY_PATH` at a directory containing only that library.
+
+## 5. Reproduce Figure 1
+
+The hollow markers use the two 1.5B readouts. To draw the published figure directly from the committed tables, run this command from the repository root.
+
+```sh
+/tmp/branch-eval-env/bin/python ml/figures.py experiments/study/evaluation /tmp/project-results.png --scale experiments/study/supplement/scale_project_metrics.csv
+```
+
+To draw the figure from your own run, use the primary evaluation from step 3 and the per-project table produced in step 4.
+
+```sh
+/tmp/branch-eval-env/bin/python ml/figures.py /tmp/jvm-reference/evaluation /tmp/jvm-reference/project-results.png --scale /tmp/jvm-reference/supplement/scale_project_metrics.csv
+```

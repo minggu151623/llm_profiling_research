@@ -57,3 +57,9 @@ Sau khi merge PR #5–#9, người duy trì repo đã chạy lại toàn bộ [T
 Theo lựa chọn của chủ dự án, mình chạy thêm một thí nghiệm exploratory với Qwen2.5-Coder-1.5B-Instruct (revision `2e1fd397`) trên Linux ([Actions 44862417201](https://github.com/minggu151623/llm_profiling_research/actions/runs/44862417201)). Prompt, cách đọc kết quả và các fold giữ nguyên; tokenizer giống hệt bản 0.5B. Kết quả không đổi kết luận. Rating zero-shot nằm trong 0.499–0.557, Spearman 0.02, MAE 0.435, chênh +0.110 (0.061 đến 0.159) so với lexical ridge. Embedding ridge đạt MAE 0.326, chênh +0.001 (−0.023 đến 0.024) so với lexical ridge và −0.001 so với bản 0.5B. Output nằm ở [supplement/qwen-1.5b](experiments/study/supplement/qwen-1.5b/), bảng so sánh ở [scale.csv](experiments/study/supplement/scale.csv). Chấm lại trên macOS lệch tối đa 3 × 10⁻⁷.
 
 Người kiểm thử Java sẽ là tác giả thứ hai. `paper/main.tex` đang giữ chỗ `[COAUTHOR NAME AND AFFILIATION]`, và `paper/build.sh` sẽ không tạo gói arXiv cho đến khi chỗ này được thay bằng tên thật. Giấy phép arXiv đã chọn là CC BY 4.0.
+
+## 23/11/2026 — sửa bản thảo sau kiểm chứng
+
+Bảng sensitivity chỉ chấm workload normal. Trong 119 site có ít nhất 20 lượt chạy, chênh macro MAE so với lexical ridge là −0,001 cho embedding và +0,107 cho zero-shot. Masking làm cả 193 rating tăng, trung bình 0,053. Khoảng bootstrap của embedding so với lexical chứa 0 trên tám thư viện. Các mô hình ở setting seen-project dùng cả đặc trưng lẫn hệ số phạt khác nhau. Sàn 0,0439 áp dụng cho hai trace với trọng số bằng nhau giữa workload và giữa thư viện. [Bản thảo](paper/manuscript.md) · [Bảng sensitivity](experiments/study/supplement/sensitivity.csv)
+
+Có thể dựng lại Hình 1 trực tiếp từ các bảng đã commit bằng lệnh ở mục 5. PDF dẫn đến phiên bản có cả script và bảng 1.5B. Cộng sự vẫn phụ trách báo cáo kiểm thử Java độc lập. [Lệnh vẽ hình](experiments/study/README.md) · [Brief cho agent](AGENT_BRIEF.md) · [Hướng dẫn kiểm thử](java/TESTING.md)
