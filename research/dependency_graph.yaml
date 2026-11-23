@@ -188,8 +188,8 @@ nodes:
   - SIG
   status: measured
   acceptance_criteria: Score the paired lexical and identifier-masked interventions.
-  result: Masking changed macro MAE by +0.001 (-0.002 to 0.004) for the embedding ridge and -0.002 (-0.011 to 0.007)
-    for the zero-shot rating. The paired masking contrasts are exploratory.
+  result: Full minus masked normal-workload macro MAE was +0.001 (-0.002 to 0.004) for the embedding ridge and -0.002 (-0.011 to 0.007)
+    for the zero-shot readout. Masking raised all 193 prompted ratings. The paired contrasts are exploratory.
   evidence_paths:
   - experiments/study/protocol.md
   - experiments/study/supplement/sensitivity.csv
@@ -218,7 +218,7 @@ nodes:
   status: measured
   acceptance_criteria: Compare matched observed sites across input families and record coverage.
   result: 82 of 138 matched sites changed taken fraction, 42 by more than 0.10. Workload-blind error floor 0.044
-    with projects weighted equally.
+    for these two traces with equal workload and project weights.
   evidence_paths:
   - experiments/study/protocol.md
   - experiments/study/evaluation/workload_shift.csv
@@ -234,11 +234,13 @@ nodes:
   acceptance_criteria: Trace empirical claims to paired measured data, including uncertainty and limitations.
   result: Manuscript reports a negative result for the frozen 0.49B SLM, as the go/no-go rule in the research brief
     prescribes. The LaTeX version compiles with pdfLaTeX in CI and matches the Markdown number for number; the
-    arXiv sheet is ready. Authorship, licence, endorsement and submission await the project owner.
+    arXiv sheet records CC BY 4.0. Coauthor details, independent Java testing and author approval are pending.
   evidence_paths:
   - research/literature/novelty_map.md
   - experiments/study/protocol.md
   - paper/manuscript.md
   - paper/main.tex
   - paper/ARXIV.md
+  - experiments/study/supplement/sensitivity.csv
+  - experiments/study/supplement/scale_project_metrics.csv
   - scripts/check_paper.py

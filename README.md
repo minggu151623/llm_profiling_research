@@ -1,10 +1,14 @@
 # Can small language models predict runtime branch behavior from static Java bytecode?
 
-Dự án của nhóm hai người nghiên cứu xác suất một lệnh nhảy có điều kiện trong bytecode Java sẽ đi đến đích nhảy. Mô hình tương lai chỉ đọc dữ liệu tĩnh. Nhóm chạy Java trong giai đoạn thu nhãn để biết hai cạnh thực sự được thực thi bao nhiêu lần.
+Dự án của nhóm hai người nghiên cứu xác suất một lệnh nhảy có điều kiện trong bytecode Java sẽ đi đến đích nhảy. Khi dự đoán, mô hình chỉ đọc dữ liệu tĩnh. Nhóm chạy Java trong giai đoạn thu nhãn để biết hai cạnh thực sự được thực thi bao nhiêu lần.
+
+## Bản thảo và kết quả
+
+Trên 138 nhánh được quan sát ở tám thư viện Java, sai số tuyệt đối trung bình theo thư viện (macro MAE) trên workload normal là 0,424 khi hỏi trực tiếp Qwen 0.5B, 0,325 với lexical ridge và 0,327 khi dùng hidden state của Qwen. Lexical ridge có sai số thấp hơn cách hỏi trực tiếp ở cả tám thư viện. So sánh embedding với lexical ridge chưa cho thấy ưu thế rõ ràng. [Đọc bản thảo](paper/manuscript.md) · [Bảng kết quả](experiments/study/evaluation/) · [Tái lập thí nghiệm và Hình 1](experiments/study/README.md)
 
 ## DAG và thư viện bài báo
 
-**[Mở sơ đồ DAG và danh mục ba bài báo](research/literature/README.md)**. Mỗi bài có ghi chú đọc và đường dẫn tới nguồn gốc. [DAG dạng YAML](research/dependency_graph.yaml) · [BibTeX](research/literature/papers.bib)
+**[Mở sơ đồ DAG và danh mục tài liệu nghiên cứu](research/literature/README.md)**. Mỗi bài có ghi chú đọc và đường dẫn tới nguồn gốc. [DAG dạng YAML](research/dependency_graph.yaml) · [BibTeX](research/literature/papers.bib)
 
 ## Pilot đầu tiên
 
@@ -17,7 +21,7 @@ Một fixture tự viết biên dịch bằng Temurin 25 cho 6 nhánh bytecode, 
 
 Ở source, điều kiện là `n < 0`. Trong bytecode, `ifge 6` nhảy khi `n >= 0`. Có thể đếm trực tiếp các số thỏa điều kiện trong từng mảng input rồi so với hai bảng nhãn. [Fixture](java/fixtures/Decisions.java) · [Workload](experiments/configs/pilot.json) · [Disassembly](experiments/results/decisions-v0.1/javap.txt)
 
-## Chạy lại từ thư mục gốc
+## Chạy lại pilot từ thư mục gốc
 
 Dùng Temurin HotSpot 25, Maven 3.9.11 trên `PATH`, Python 3.13 và môi trường ảo. Đặt `JAVA_HOME` trỏ đến JDK 25. Bản ghi tham chiếu dùng Temurin 25.0.5.1+2 trên macOS arm64. Maven tải những thư viện được khai báo trong POM ở lần chạy đầu. [Maven build](java/pom.xml) · [Phiên bản thực tế](experiments/results/decisions-v0.1/manifest.json)
 
@@ -34,10 +38,6 @@ Tham số cuối của runner là một thư mục kết quả **mới**. Có th
 
 ## Bàn giao giữa hai thành viên
 
-| Người review | Phần cần đọc | Quyết định cần ghi vào PR |
-| --- | --- | --- |
-| Java/JVM engineer | [Quy ước BCI, ID và nhãn](data/schema/README.md), [tests Java](java/src/test/java/org/branchpilot/BranchesTest.java) | Xác nhận ánh xạ cạnh, phạm vi fixture và điều kiện mở rộng sang JAR |
-| AI/ML researcher | [RQ và protocol đo](research/questions.md), [prior work](research/literature/novelty_map.md), [loader](data/validate.py) | Xác nhận baseline, cách tách dữ liệu và giới hạn claim |
-| Cả hai | [Quyết định còn mở](research/decisions.md), [dependency graph](research/dependency_graph.yaml) | Dùng schema v0 cho pilot. Cùng duyệt bộ project, workload và manifest chia tập trước khi đo trên quy mô lớn |
+Cộng sự phụ trách kiểm thử độc lập phần đo Java. Hướng dẫn gồm cách tạo báo cáo và bảy phép kiểm tra thủ công. DAG đang chờ báo cáo của cộng sự ở nút `JAVA`. [Hướng dẫn kiểm thử](java/TESTING.md) · [Kiểm tra thủ công](java/MANUAL_TESTING.md)
 
-[Research brief gốc](CODEX_RESEARCH_BRIEF_SLM_JVM_BRANCH_PROFILING.md)
+[Bàn giao cho agent](AGENT_BRIEF.md) · [Nhật ký dự án](HANDOFF.md) · [Research brief gốc](CODEX_RESEARCH_BRIEF_SLM_JVM_BRANCH_PROFILING.md)
