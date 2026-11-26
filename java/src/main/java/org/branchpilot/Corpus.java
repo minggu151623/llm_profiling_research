@@ -55,7 +55,7 @@ public final class Corpus {
         Pilot.jsonl(output.resolve("context.jsonl"), contexts(tree, entries));
     }
 
-    private static List<Context> contexts(ClassNode tree, List<Entry> entries) throws Exception {
+    static List<Context> contexts(ClassNode tree, List<Entry> entries) throws Exception {
         var result = new ArrayList<Context>();
         int originalIndex = 0;
         for (int methodIndex = 0; methodIndex < tree.methods.size(); methodIndex++) {

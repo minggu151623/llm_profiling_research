@@ -21,7 +21,7 @@ def read_rows(path, kind):
             yield row
 
 
-def load_examples(static_path, profiles):
+def load_examples(static_path, profiles, *, single_class=True):
     """Yield (site ID, static features, workload, label) after validating every join."""
     sites = {}
     for site in read_rows(static_path, "static"):
@@ -32,7 +32,7 @@ def load_examples(static_path, profiles):
         if site["fallthrough_bci"] != site["original_bci"] + 3:
             raise ValueError(f"Invalid conditional instruction length at {key}")
         sites[key] = site
-    if len({s["artifact_sha256"] for s in sites.values()}) > 1:
+    if single_class and len({s["artifact_sha256"] for s in sites.values()}) > 1:
         raise ValueError("Pilot inventory must describe a single original class")
     examples = []
     for workload, path in profiles.items():

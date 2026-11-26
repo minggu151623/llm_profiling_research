@@ -92,8 +92,10 @@ def read_rows(path):
     return [json.loads(line) for line in path.read_text().splitlines()]
 
 
-def main(output, cache):
+def main(output, cache, seed=None):
     cfg = json.loads(CONFIG.read_text())
+    if seed is not None:
+        cfg["seed"] = seed
     output, cache = output.resolve(), cache.resolve()
     if output.exists():
         raise FileExistsError(f"Use a new destination: {output}")
@@ -123,7 +125,7 @@ def main(output, cache):
                 "java_runtime": release["JAVA_RUNTIME_VERSION"].strip('"'), "os": platform.system(),
                 "os_release": platform.release(), "architecture": platform.machine(), "maven": maven,
                 "java_vm_flags": vm_flags, "verify": "independent javap of original JAR and matched app output digests",
-                "command": "python scripts/corpus.py OUTPUT", "sources": {str(p.relative_to(ROOT)): sha(p) for p in source_files},
+                "command": "python scripts/corpus.py OUTPUT" + (f" --seed {seed}" if seed is not None else ""), "sources": {str(p.relative_to(ROOT)): sha(p) for p in source_files},
                 "projects": {}}
     with tempfile.TemporaryDirectory(dir=output.parent) as tmp:
         temp = Path(tmp)
@@ -177,5 +179,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     parser.add_argument("--cache", type=Path, default=Path.home() / ".cache/branch-study/jars")
+    parser.add_argument("--seed", type=int, help="Override the registered workload seed for a separate trace")
     args = parser.parse_args()
-    main(args.output, args.cache)
+    main(args.output, args.cache, args.seed)

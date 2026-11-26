@@ -56,7 +56,7 @@ def read_index(path):
     return records
 
 
-def load_corpus(corpus, config):
+def load_corpus(corpus, config, workloads=("normal", "shift"), *, single_class=True):
     sites = []
     for project in config["projects"]:
         directory = corpus / project
@@ -66,9 +66,9 @@ def load_corpus(corpus, config):
             raise ValueError(f"{project}: context inventory mismatch")
         selected = set(sorted(inventory, key=lambda k: hashlib.sha256(
             (str(config["seed"]) + ":" + k).encode()).digest())[:config["max_sites_per_project"]])
-        profiles = {w: directory / f"{w}.jsonl" for w in ("normal", "shift")}
+        profiles = {w: directory / f"{w}.jsonl" for w in workloads}
         labels = {key: {} for key in inventory}
-        for key, _, workload, label in load_examples(directory / "static.jsonl", profiles):
+        for key, _, workload, label in load_examples(directory / "static.jsonl", profiles, single_class=single_class):
             labels[key][workload] = label
         for key, static in inventory.items():
             ops = tuple(contexts[key]["opcodes"])

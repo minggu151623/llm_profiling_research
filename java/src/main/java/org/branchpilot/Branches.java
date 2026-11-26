@@ -33,9 +33,16 @@ final class Branches {
     }
 
     static Scan scan(byte[] original, boolean instrument) throws NoSuchAlgorithmException {
+        return scan(original, instrument, null);
+    }
+
+    // A negative slot leaves the corresponding original branch untouched.
+    static Scan scan(byte[] original, boolean instrument, int[] slots) throws NoSuchAlgorithmException {
         String sha = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(original));
         var reader = new OffsetReader(original);
-        var writer = instrument ? new ClassWriter(reader, ClassWriter.COMPUTE_FRAMES) : null;
+        boolean legacy = slots != null && reader.readUnsignedShort(6) <= Opcodes.V1_6;
+        var writer = instrument ? new ClassWriter(reader,
+                legacy ? ClassWriter.COMPUTE_MAXS : ClassWriter.COMPUTE_FRAMES) : null;
         var sites = new ArrayList<Site>();
         reader.accept(new ClassVisitor(Opcodes.ASM9, writer) {
             int methodCount;
@@ -57,16 +64,19 @@ final class Branches {
                         sites.add(new Site("v0", sha + ":" + method + ":" + bci, sha,
                                 reader.getClassName(), method, name, descriptor, bci,
                                 Printer.OPCODES[opcode], reader.targets.get(target), bci + 3));
-                        if (instrument) {
+                        int slot = slots == null ? index : slots[index];
+                        if (instrument && slot >= 0) {
                             Label taken = new Label();
                             Label next = new Label();
                             super.visitJumpInsn(opcode, taken);
-                            probe(index, "fallthrough");
+                            probe(slot, "fallthrough");
                             super.visitJumpInsn(Opcodes.GOTO, next);
                             super.visitLabel(taken);
-                            probe(index, "taken");
+                            probe(slot, "taken");
                             super.visitJumpInsn(Opcodes.GOTO, target);
                             super.visitLabel(next);
+                        } else {
+                            super.visitJumpInsn(opcode, target);
                         }
                     }
 

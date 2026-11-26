@@ -66,6 +66,17 @@ class CorpusVerificationTest {
         assertArrayEquals(new long[]{4,3,1}, new long[]{Counters.falls(0),Counters.falls(1),Counters.falls(2)});
     }
 
+    @Test void samplingOneBranchPreservesUnselectedJumps() throws Exception {
+        var scan = Branches.scan(sharedTargetClass(), true, new int[]{-1, 0, -1});
+        var traced = Pilot.load(scan.rewritten()).getMethod("score", int.class, int.class);
+        Counters.start(1);
+        assertEquals(1, traced.invoke(null, -2, 7));
+        assertEquals(1, traced.invoke(null, 2, 0));
+        assertEquals(-1, traced.invoke(null, 2, 9));
+        assertEquals(1, Counters.jumps(0));
+        assertEquals(1, Counters.falls(0));
+    }
+
     private static Map<String, JsonNode> rows(Path file) throws Exception {
         var result = new HashMap<String, JsonNode>();
         for (String line : Files.readAllLines(file)) {

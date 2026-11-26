@@ -1,0 +1,58 @@
+name: Reproduce DaCapo application holdout
+on:
+  push:
+    branches: [research/empirical-study]
+    paths: ['.github/workflows/external.yml', 'scripts/external_corpus.py', 'ml/external.py', 'java/external/**', 'java/src/main/java/org/branchpilot/ExternalInventory.java']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.13'
+      - name: Install pinned Java toolchain
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -fLsS --retry 3 -o jdk.tgz 'https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.5.1%2B2/OpenJDK25U-jdk_x64_linux_hotspot_25.0.5.1_2.tar.gz'
+          echo '760f91b22c3efc9bd1b64ff950598231be82928cc807e30691a0e7a2995a62c0  jdk.tgz' | sha256sum -c -
+          mkdir study-jdk; tar xzf jdk.tgz --strip-components=1 -C study-jdk
+          curl -fLsS --retry 3 -o mvn.tgz https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.11/apache-maven-3.9.11-bin.tar.gz
+          echo 'bcfe4fe305c962ace56ac7b5fc7a08b87d5abd8b7e89027ab251069faebee516b0ded8961445d6d91ec1985dfe30f8153268843c89aa392733d1a3ec956c9978  mvn.tgz' | sha512sum -c -
+          tar xzf mvn.tgz
+          echo "JAVA_HOME=$RUNNER_TEMP/study-jdk" >> "$GITHUB_ENV"
+          echo "$RUNNER_TEMP/study-jdk/bin" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/apache-maven-3.9.11/bin" >> "$GITHUB_PATH"
+      - name: Fetch versioned benchmark and legacy runtime
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -fsSL --retry 3 -o dacapo.jar https://github.com/dacapobench/dacapobench/releases/download/v9.12-MR1-bach/dacapo-9.12-MR1-bach.jar
+          echo 'be3db084adcb2867760e1197b3ccf541c3213d918daa19386d8e236648d24be8  dacapo.jar' | sha256sum -c -
+          curl -fsSL --retry 3 -o bench-jre.tgz https://cdn.azul.com/zulu/bin/zulu8.98.0.201-ca-jre8.0.514-linux_x64.tar.gz
+          echo '44f6fcb843c544c0537fdfbc0a065ce563198e2e911c12babb740e5555a9c54a  bench-jre.tgz' | sha256sum -c -
+          mkdir bench-jre && tar xzf bench-jre.tgz --strip-components=1 -C bench-jre
+      - name: Check original bytecode and run the eight configurations
+        run: |
+          mvn -B -ntp -f java/pom.xml test dependency:build-classpath -DincludeScope=runtime -Dmdep.outputFile=target/runtime-classpath.txt
+          python scripts/external_corpus.py "$RUNNER_TEMP/dacapo.jar" "$RUNNER_TEMP/bench-jre/bin/java" results/corpus
+      - name: Infer on static bytecode using pinned open weights
+        env:
+          HF_HUB_DISABLE_XET: '1'
+        run: |
+          python -m venv "$RUNNER_TEMP/slm"
+          "$RUNNER_TEMP/slm/bin/pip" install 'torch==2.10.0' --index-url https://download.pytorch.org/whl/cpu
+          "$RUNNER_TEMP/slm/bin/pip" install -r ml/slm/requirements.txt
+          "$RUNNER_TEMP/slm/bin/python" ml/slm/predict.py results/corpus results/slm --device cpu --threads 4 --batch-size 8
+      - name: Score the registered contrasts
+        run: |
+          python -m pip install -r ml/requirements.txt
+          python ml/external.py results/corpus results/slm results/evaluation
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: dacapo-transfer
+          path: results/
